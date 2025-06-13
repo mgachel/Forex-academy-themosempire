@@ -1,0 +1,543 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment - TradeWise Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #0c77f2 0%, #0c77f2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: #0c77f2;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        
+        .animate-slide-up, .animate-slide-left, .animate-slide-right {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .ghana-flag {
+            background: linear-gradient(to right, #ce1126 33.33%, #fcd116 33.33% 66.66%, #006b3f 66.66%);
+            height: 4px;
+        }
+        
+        .btn-primary {
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(12, 119, 242, 0.2);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        .form-input {
+            transition: all 0.2s;
+        }
+        
+        .form-input:focus {
+            border-color: #0c77f2;
+            box-shadow: 0 0 0 3px rgba(12, 119, 242, 0.15);
+            outline: none;
+        }
+        
+        .payment-method {
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(12, 119, 242, 0.1);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .security-badge {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-10 py-3">
+        <div class="flex items-center gap-4 text-[#0d141c]">
+            <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+                </svg>
+            </div>
+            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise Academy</h2>
+        </div>
+        <div class="hidden md:flex items-center gap-4">
+            <div class="flex items-center gap-2 text-[#0c77f2]">
+                <i class="fas fa-shield-alt"></i>
+                <span class="text-sm font-medium">SSL Secured Payment</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="@container mb-8">
+        <div class="@[480px]:p-4">
+            <div class="flex min-h-[200px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgoPMQAi9_v2P7F_bqxdM6Md2hYfDtpRee_VYJagK6rsnJvQdcKG-hElx9b6CSgrVkU1YDsF0AHd-jCHEqYESTyt08-RqbgYh7O_JeCuQGttEOYVtbhMBF1QQaRz-o-Zdn0n5i4cN89kkF0Q');">
+                <div class="flex flex-col gap-2 text-center">
+                    <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                        Complete Your Payment
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                        Secure your spot in the TradeWise Academy program with our safe, encrypted payment system
+                    </h2>
+                </div>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 mt-4">
+                    <span class="ghana-flag w-6 h-1 rounded-full"></span>
+                    <span class="text-white text-sm font-bold">🇬🇭 Located in Ghana</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+        <div class="flex flex-col max-w-[960px] flex-1">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Payment Summary -->
+                <div class="space-y-6 animate-slide-up">
+                    <!-- Course Details Card -->
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center mr-4 text-white">
+                                <i class="fas fa-graduation-cap text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#0d141c]">Course Summary</h3>
+                                <p class="text-[#49709c]">Professional Trading Course</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between py-3 border-b border-[#e7edf4]">
+                                <span class="text-[#49709c] flex items-center">
+                                    <i class="fas fa-book mr-2"></i>
+                                    Course Type
+                                </span>
+                                <span class="text-[#0d141c] font-semibold">{% if application %}{{ application.get_desired_course_display }}{% else %}Advanced Trading{% endif %}</span>
+                            </div>
+                            <div class="flex justify-between py-3 border-b border-[#e7edf4]">
+                                <span class="text-[#49709c] flex items-center">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    Duration
+                                </span>
+                                <span class="text-[#0d141c] font-semibold">12 Weeks</span>
+                            </div>
+                            <div class="flex justify-between py-3 border-b border-[#e7edf4]">
+                                <span class="text-[#49709c] flex items-center">
+                                    <i class="fas fa-users mr-2"></i>
+                                    Support
+                                </span>
+                                <span class="text-[#0d141c] font-semibold">24/7 Mentorship</span>
+                            </div>
+                            <div class="flex justify-between py-4">
+                                <span class="text-[#49709c] text-lg font-medium">Total Amount</span>
+                                <span class="text-[#0c77f2] font-bold text-3xl">GHS {{ course_price|floatformat:0 }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- What's Included -->
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <h4 class="text-xl font-bold text-[#0d141c] mb-6 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            What's Included
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center text-[#49709c]">
+                                <i class="fas fa-video text-[#0c77f2] mr-3 w-5"></i>
+                                Live trading sessions & analysis
+                            </div>
+                            <div class="flex items-center text-[#49709c]">
+                                <i class="fas fa-chart-bar text-[#0c77f2] mr-3 w-5"></i>
+                                Advanced trading strategies
+                            </div>
+                            <div class="flex items-center text-[#49709c]">
+                                <i class="fas fa-comments text-[#0c77f2] mr-3 w-5"></i>
+                                Private community access
+                            </div>
+                            <div class="flex items-center text-[#49709c]">
+                                <i class="fas fa-certificate text-[#0c77f2] mr-3 w-5"></i>
+                                Certificate of completion
+                            </div>
+                            <div class="flex items-center text-[#49709c]">
+                                <i class="fas fa-headset text-[#0c77f2] mr-3 w-5"></i>
+                                1-on-1 mentorship sessions
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Badge -->
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <div class="flex items-center">
+                            <div class="security-badge bg-green-500 rounded-full p-3 mr-4 text-white">
+                                <i class="fas fa-lock text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-[#0d141c] font-bold">Secure Payment</h5>
+                                <p class="text-[#49709c] text-sm">Protected by Paystack encryption</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div class="animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <div class="flex items-center mb-8">
+                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center mr-4 text-white">
+                                <i class="fas fa-credit-card text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#0d141c]">Payment Details</h3>
+                                <p class="text-[#49709c]">Enter your information below</p>
+                            </div>
+                        </div>
+                        
+                        <form id="payment-form" class="space-y-6">
+                            <div>
+                                <label for="email" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                    <i class="fas fa-envelope mr-2 text-[#0c77f2]"></i>
+                                    Email Address
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    required
+                                    class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
+                                    placeholder="your@email.com"
+                                    value="{{ application.email|default:'' }}"
+                                />
+                            </div>
+
+                            <div>
+                                <label for="fullName" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                    <i class="fas fa-user mr-2 text-[#0c77f2]"></i>
+                                    Full Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="fullName"
+                                    required
+                                    class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
+                                    placeholder="John Doe"
+                                    value="{{ application.full_name|default:'' }}"
+                                />
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                    <i class="fas fa-phone mr-2 text-[#0c77f2]"></i>
+                                    Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
+                                    placeholder="+233 XX XXX XXXX"
+                                    value="{{ application.phone|default:'' }}"
+                                />
+                            </div>
+
+                            <div>
+                                <label for="amount" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                    <i class="fas fa-dollar-sign mr-2 text-[#0c77f2]"></i>
+                                    Amount (GHS)
+                                </label>
+                                <div class="relative">
+                                    <input
+                                        type="number"
+                                        id="amount"
+                                        value="{{ course_price|floatformat:0 }}"
+                                        min="1"
+                                        step="0.01"
+                                        required
+                                        class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] font-bold text-xl"
+                                    />
+                                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#0c77f2]">
+                                        <i class="fas fa-coins"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Button -->
+                            <button
+                                type="button"
+                                onclick="pay()"
+                                id="payBtn"
+                                class="w-full btn-primary bg-[#0c77f2] text-white font-bold py-4 px-8 rounded-lg text-lg shadow-md"
+                            >
+                                <span id="btn-text" class="flex items-center justify-center">
+                                    <i class="fas fa-lock mr-3"></i>
+                                    Pay GHS {{ course_price|floatformat:0 }} Securely
+                                </span>
+                                <span id="btn-loading" class="hidden flex items-center justify-center">
+                                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Processing Payment...
+                                </span>
+                            </button>
+
+                            <!-- Payment Methods -->
+                            <div class="text-center pt-6">
+                                <p class="text-[#49709c] text-sm mb-4">Accepted payment methods:</p>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <div class="payment-method rounded-lg p-3 text-center border border-[#cedae8] bg-white">
+                                        <i class="fas fa-credit-card text-[#0c77f2] text-lg mb-1"></i>
+                                        <p class="text-xs text-[#49709c]">Cards</p>
+                                    </div>
+                                    <div class="payment-method rounded-lg p-3 text-center border border-[#cedae8] bg-white">
+                                        <i class="fas fa-university text-[#0c77f2] text-lg mb-1"></i>
+                                        <p class="text-xs text-[#49709c]">Bank</p>
+                                    </div>
+                                    <div class="payment-method rounded-lg p-3 text-center border border-[#cedae8] bg-white">
+                                        <i class="fas fa-mobile-alt text-[#0c77f2] text-lg mb-1"></i>
+                                        <p class="text-xs text-[#49709c]">Mobile</p>
+                                    </div>
+                                    <div class="payment-method rounded-lg p-3 text-center border border-[#cedae8] bg-white">
+                                        <i class="fas fa-phone text-[#0c77f2] text-lg mb-1"></i>
+                                        <p class="text-xs text-[#49709c]">USSD</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Payment Security Info -->
+                    <div class="mt-6 p-4 bg-green-50 rounded-lg border border-green-100">
+                        <div class="flex items-center text-green-700">
+                            <i class="fas fa-shield-alt mr-2"></i>
+                            <p class="text-sm">Your payment is processed securely with 256-bit SSL encryption</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-16 animate-slide-up">
+                <h2 class="text-2xl font-bold text-[#0d141c] mb-6 text-center">Frequently Asked Questions</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">Is my payment information secure?</h3>
+                        <p class="text-[#49709c]">Yes, all payments are processed through Paystack's secure payment gateway with 256-bit SSL encryption.</p>
+                    </div>
+                    
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">When will I get access to the course?</h3>
+                        <p class="text-[#49709c]">You'll receive access credentials within 24 hours after your payment is successfully processed.</p>
+                    </div>
+                    
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">What happens if I need a refund?</h3>
+                        <p class="text-[#49709c]">Please contact our support team within 7 days of purchase if you need to request a refund.</p>
+                    </div>
+                    
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">Can I pay in installments?</h3>
+                        <p class="text-[#49709c]">Yes, we offer flexible payment plans. Contact our team for details on installment options.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Need Help Section -->
+            <div class="mt-16 rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm text-center animate-slide-up">
+                <h3 class="text-xl font-bold text-[#0d141c] mb-4">Need Help?</h3>
+                <p class="text-[#49709c] mb-6">Our team is available to assist with any payment issues or questions</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="tel:+233596688947" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+                        <i class="fas fa-phone"></i>
+                        <span>+233 59 668 8947</span>
+                    </a>
+                    <a href="mailto:Themosempire@gmail.com" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+                        <i class="fas fa-envelope"></i>
+                        <span>Themosempire@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/233596688947" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Support</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Money-back Guarantee -->
+            <div class="mt-6 bg-[#0c77f2]/5 rounded-lg p-4 border border-[#0c77f2]/20 animate-slide-up">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-[#0c77f2] flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fas fa-undo-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-[#0d141c] font-bold">7-Day Satisfaction Guarantee</h3>
+                        <p class="text-[#49709c]">If you're not completely satisfied with your purchase, contact us within 7 days for a full refund.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex justify-center mt-16 border-t border-[#e7edf4]">
+        <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+                <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Refund Policy</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="{% url 'core:contact' %}">Contact Us</a>
+                </div>
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <div class="flex items-center text-[#0c77f2]">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        <span class="text-sm">SSL Secured</span>
+                    </div>
+                    <div class="flex items-center text-[#0c77f2]">
+                        <i class="fas fa-lock mr-2"></i>
+                        <span class="text-sm">256-bit Encryption</span>
+                    </div>
+                </div>
+                <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 TradeWise Academy. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+            </footer>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (scrolled / maxHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progress + '%';
+        });
+
+        // Dynamic content animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up, .animate-slide-left, .animate-slide-right');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0) translateX(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Initialize animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(animateOnScroll, 100);
+        });
+
+        function pay() {
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const amount = document.getElementById('amount').value;
+
+            if (!email || !name || !amount) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Set button loading state
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+            const payBtn = document.getElementById('payBtn');
+            
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+            payBtn.disabled = true;
+
+            const handler = PaystackPop.setup({
+                key: 'pk_live_9f1ad537884643df3a68b43c58e9c1bd9d5f2c84', // Replace with your actual key
+                email: email,
+                amount: amount * 100, // Convert to pesewas
+                currency: 'GHS',
+                ref: 'TW_' + Math.floor((Math.random() * 1000000000) + 1),
+                metadata: {
+                    full_name: name,
+                    phone: phone
+                },
+                callback: function(response) {
+                    alert('Payment successful! Reference: ' + response.reference);
+                    window.location.href = '/payment-success/';
+                },
+                onClose: function() {
+                    // Reset button state
+                    btnText.classList.remove('hidden');
+                    btnLoading.classList.add('hidden');
+                    payBtn.disabled = false;
+                    alert('Payment cancelled');
+                }
+            });
+
+            handler.openIframe();
+        }
+
+        // Update button text when amount changes
+        document.getElementById('amount').addEventListener('input', function() {
+            const amount = this.value;
+            const btnText = document.getElementById('btn-text');
+            if (amount && amount > 0) {
+                btnText.innerHTML = `<i class="fas fa-lock mr-3"></i>Pay GHS ${parseFloat(amount).toLocaleString()} Securely`;
+            }
+        });
+
+        // Form input focus effects
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#0c77f2';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.style.borderColor = '#cedae8';
+            });
+        });
+
+        // Smooth scroll to top when page loads
+        window.addEventListener('load', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

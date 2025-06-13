@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradeWise Academy - Master Forex Trading in Ghana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .text-gradient {
+            background: linear-gradient(135deg, #0c77f2 0%, #0c77f2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .ghana-flag {
+            background: linear-gradient(to right, #ce1126 33.33%, #fcd116 33.33% 66.66%, #006b3f 66.66%);
+            height: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
+    <!-- Navigation -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-10 py-3">
+        <div class="flex items-center gap-4 text-[#0d141c]">
+            <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+                </svg>
+            </div>
+            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise Academy</h2>
+        </div>
+        <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Courses</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="#">Community</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">Resources</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">About Us</a>
+            </div>
+            <div class="flex gap-2">
+                <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Get Started</span>
+                </a>
+                <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#e7edf4] text-[#0d141c] text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Login</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+        <div class="flex flex-col max-w-[960px] flex-1">
+
+            <!-- Hero Section -->
+            <div class="@container">
+                <div class="@[480px]:p-4">
+                    <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
+                        <div class="flex flex-col gap-2 text-center">
+                            <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                                Master the Forex Market with TradeWise Academy
+                            </h1>
+                            <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                                Learn from industry experts and gain the skills to trade forex successfully. Our comprehensive courses cover everything from beginner basics to advanced strategies.
+                            </h2>
+                        </div>
+                        <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
+                            <span class="truncate">Explore Courses</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose TradeWise Section -->
+            <div class="flex flex-col gap-10 px-4 py-10 @container">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+                        Why Choose TradeWise Academy?
+                    </h1>
+                    <p class="text-[#0d141c] text-base font-normal leading-normal max-w-[720px]">
+                        We provide a structured learning path, expert guidance, and a supportive community to help you achieve your trading goals.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-0">
+                    <div class="flex flex-1 gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 flex-col">
+                        <div class="text-[#0d141c]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176ZM104,120v24a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm32-16v40a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm32-16v56a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <h2 class="text-[#0d141c] text-base font-bold leading-tight">Comprehensive Curriculum</h2>
+                            <p class="text-[#49709c] text-sm font-normal leading-normal">
+                                Our courses cover all aspects of forex trading, from fundamental analysis to advanced technical strategies.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-1 gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 flex-col">
+                        <div class="text-[#0d141c]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <h2 class="text-[#0d141c] text-base font-bold leading-tight">Expert Instructors</h2>
+                            <p class="text-[#49709c] text-sm font-normal leading-normal">
+                                Learn from experienced traders with a proven track record of success in the forex market.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-1 gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 flex-col">
+                        <div class="text-[#0d141c]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                                <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <h2 class="text-[#0d141c] text-base font-bold leading-tight">Flexible Learning</h2>
+                            <p class="text-[#49709c] text-sm font-normal leading-normal">
+                                Study at your own pace with our online platform, accessible anytime, anywhere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses Section -->
+            <div class="flex flex-col gap-10 px-4 py-10 @container">
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-4">
+                        <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+                            Our Courses
+                        </h1>
+                        <p class="text-[#0d141c] text-base font-normal leading-normal max-w-[720px]">
+                            Choose from a range of courses tailored to your experience level and trading goals.
+                        </p>
+                    </div>
+                    <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] w-fit">
+                        <span class="truncate">View All Courses</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div class="flex flex-col gap-3 pb-3">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDr3RmoRmvBvv8lx28Q1LZ28Dsnz0gM0aQIRuMUyE9RYnbD3umCX6np-Oa3rdSvqYFqzsWTssT1dqAgOSgxm6iBXyOVcusHsNalA280u41xCR8MRjhiY7j1nPfO88Uh7BDRi93F2pWm-0gctCIgVVuOQt5C2L51_1DWVCvRGoysvJ0OH7bgKy8ErK1jL3PDuXzQ1Z59BH7XC1Tm5ZBfGtBW65RO5kppLCFFgtapT08C1te1iqrE9TyM_bdAbwuTlP9LOZz9gWfAKw');">
+                        </div>
+                        <div>
+                            <p class="text-[#0d141c] text-base font-medium leading-normal">Beginner's Guide to Forex</p>
+                            <p class="text-[#49709c] text-sm font-normal leading-normal">
+                                Learn the basics of forex trading, including market terminology, currency pairs, and fundamental analysis.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3 pb-3">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPS-ETSSuP4y5GzvuWwA_bMNWtgkmaZ60RZ3Sjktg0boHh-TKXvR840CBe7yA6N2MIMEu3zfPSLCF-zkna4ziMtF7EydK2qpghPEY22Cam8v72YvMzEZ9s4b1hmO2ms2ywRgifVJ5-o_jnH2H8eKllc3_E-Tx-xdjS_qkMSznA6Cz5ajxCxlyVCoGVpNDmUmf6frxW5cGAyxXJ8P9K9yENspoYZ09pXLuq-c2VBwUQPStZDHmfck86dHNZAnSq8G2H9sHUmGOASg');">
+                        </div>
+                        <div>
+                            <p class="text-[#0d141c] text-base font-medium leading-normal">Intermediate Trading Strategies</p>
+                            <p class="text-[#49709c] text-sm font-normal leading-normal">
+                                Develop your trading skills with advanced technical analysis, chart patterns, and trading indicators.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3 pb-3">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" 
+                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAorf6dV0LFS8AUhKnPVitNOTn7Uop24UeWQIfhRjoWPzKIWR9XCq8AOCphhuyWibXqnwFt-UDZGFpxI-1T19__BTlCxsYvmDKvBzqC8JW1_5_93eQfm49JwdJRGMc84gbTfxNiF47t21ryg13O0w5UWe4NmnkJ7cuil-HR0Eg54iBzEWx-HgdBshhmfG3cmYuWsmh3dyO-l4l4IU6sxq52hAS51KsJhlg5hWWowhIDxQC_jL_35Sbz1vGcgjSxLu4GWzZDaBd5bQ');">
+                        </div>
+                        <div>
+                            <p class="text-[#0d141c] text-base font-medium leading-normal">Advanced Risk Management</p>
+                            <p class="text-[#49709c] text-sm font-normal leading-normal">
+                                Master risk management techniques to protect your capital and maximize your trading profits.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="@container">
+                <div class="flex flex-col justify-end gap-6 px-4 py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
+                    <div class="flex flex-col gap-2 text-center">
+                        <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
+                            Ready to Start Your Trading Journey?
+                        </h1>
+                    </div>
+                    <div class="flex flex-1 justify-center">
+                        <div class="flex justify-center">
+                            <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] grow">
+                                <span class="truncate">Get Started Today</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex justify-center">
+        <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+                <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="{% url 'core:contact' %}">Contact Us</a>
+                </div>
+                <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 TradeWise Academy. All rights reserved.</p>
+            </footer>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize any functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add any needed initialization code here
+        });
+    </script>
+</body>
+</html>

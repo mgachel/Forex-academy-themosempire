@@ -1,0 +1,501 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TradeWise Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .text-gradient {
+            background: linear-gradient(135deg, #0c77f2 0%, #0c77f2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .ghana-flag {
+            background: linear-gradient(to right, #ce1126 33.33%, #fcd116 33.33% 66.66%, #006b3f 66.66%);
+            height: 4px;
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: #0c77f2;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        .animate-slide-up, .animate-slide-left, .animate-slide-right {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-10 py-3">
+        <div class="flex items-center gap-4 text-[#0d141c]">
+            <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+                </svg>
+            </div>
+            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise Academy</h2>
+        </div>
+        <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Courses</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="#">Community</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">Resources</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">About Us</a>
+            </div>
+            <div class="flex gap-2">
+                <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Get Started</span>
+                </a>
+                <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#e7edf4] text-[#0d141c] text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Login</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+        <div class="flex flex-col max-w-[960px] flex-1">
+
+            <!-- Hero Section -->
+            <div class="@container">
+                <div class="@[480px]:p-4">
+                    <div class="flex min-h-[380px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSKkQP6uEGuAm4rIZ27WvWoAK7DUU4JpLllwl-xA3TnB8wy0NQgK23f6jctOd0Viyf4XsAxx-KEOREPsG4q_tZ0kxnXYGzp9KraPWcYU1VfDpBimot_OvXTZvAti_EvDBVQkdYYtD9anTWgKS_hQyzbr4CWVbXAMDXPZs__BW4_8T5gbzLeXoLVC913J6JlcKTxLz5i7aFz1WZBdPbBQxUeNxIv-qnW4nMQ8kO');">
+                        <div class="flex flex-col gap-2 text-center">
+                            <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                                About Us
+                            </h1>
+                            <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                                Empowering Ghanaian traders through expert education, proven strategies, and comprehensive financial literacy
+                            </h2>
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 mt-4">
+                            <span class="ghana-flag w-6 h-1 rounded-full"></span>
+                            <span class="text-white text-sm font-bold">🇬🇭 Proudly Located in Ghana</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Who We Are Section -->
+            <div class="flex flex-col gap-10 px-4 py-10 @container animate-slide-up">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+                        Who We Are
+                    </h1>
+                    <p class="text-[#0d141c] text-base font-normal leading-normal max-w-[720px]">
+                        Located in the heart of Ghana 🇬🇭
+                    </p>
+                </div>
+                <div class="space-y-6 text-[#49709c] text-lg leading-relaxed">
+                    <p class="text-xl">
+                        Welcome to <span class="text-[#0c77f2] font-bold">Themosempire</span>, a transformative learning hub designed to equip you with 
+                        <span class="text-[#0c77f2] font-semibold">essential financial literacy skills and deep insights into the forex trading world</span>. 
+                        Whether you're a beginner trying to understand money or a budding trader aiming to earn in the forex market, we provide step-by-step guidance, 
+                        tools, and mentorship to get you there.
+                    </p>
+                    
+                    <p>
+                        Welcome to <span class="text-[#0c77f2] font-bold">Themosempire Fx</span>, located in 
+                        <span class="text-[#0c77f2] font-semibold">Ghana</span> and designed for mastering financial literacy and forex trading.
+                        Founded by <span class="text-[#0c77f2] font-bold text-xl">Ayarisi Amos</span> — an experienced educator, swing trader, 
+                        and intraday trader with over <span class="text-[#0c77f2] font-semibold">7 years</span> in the trading space — this academy is committed to helping individuals take 
+                        full control of their finances and unlock earning potential through the foreign exchange market.
+                    </p>
+                    
+                    <p>
+                        Ayarisi is also a proud partner of the <span class="text-[#0c77f2] font-semibold">Exness Broker Community in Ghana</span>, 
+                        bringing real-world insight, proven strategies, and mentorship that bridges the gap between theory and practice.
+                    </p>
+                    
+                    <p>
+                        His academy is built for <span class="text-[#0d141c] font-semibold">beginners</span>, <span class="text-[#0d141c] font-semibold">intermediate learners</span>, 
+                        and <span class="text-[#0d141c] font-semibold">aspiring professionals</span> who want practical tools and 
+                        market-tested strategies to grow their income and make informed financial decisions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mission Statement -->
+            <div class="flex flex-col gap-4 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center animate-slide-up mb-10">
+                <div class="flex justify-center pb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0c77f2" viewBox="0 0 256 256">
+                        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-68a28,28,0,0,1-28,28H116a8,8,0,0,1,0-16h24a12,12,0,0,0,0-24H116a28,28,0,0,1,0-56h24a8,8,0,0,1,0,16H116a12,12,0,0,0,0,24h24A28,28,0,0,1,168,148Z"/>
+                    </svg>
+                </div>
+                <h2 class="text-[#0d141c] text-2xl font-bold">Our Mission</h2>
+                <p class="text-[#0c77f2] text-xl font-bold leading-relaxed italic">
+                    "Empower individuals to make smart money decisions and trade confidently."
+                </p>
+                <p class="text-[#49709c] text-base">- Ayarisi Amos, Founder</p>
+            </div>
+
+            <!-- Our Programs Section -->
+            <div class="flex flex-col gap-10 px-4 py-10 @container animate-slide-up">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+                        Our Programs
+                    </h1>
+                    <p class="text-[#0d141c] text-base font-normal leading-normal max-w-[720px]">
+                        2 Year Comprehensive Course
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Financial Literacy 101 -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-xl">💰</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[#0d141c] text-xl font-bold">Financial Literacy 101</h3>
+                                <p class="text-[#0c77f2] text-sm font-semibold">(Beginner)</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-[#49709c]">
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Budgeting</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Saving strategies</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Debt management</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Wealth planning</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Introduction to Forex -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-xl">📈</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[#0d141c] text-xl font-bold">Introduction to Forex</h3>
+                                <p class="text-[#0c77f2] text-sm font-semibold">(Beginner-Intermediate)</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-[#49709c]">
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Forex market basics</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Currency pairs</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Brokers selection</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>How trading works</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Technical & Fundamental Analysis -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-xl">📊</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[#0d141c] text-xl font-bold">Technical & Fundamental Analysis</h3>
+                                <p class="text-[#0c77f2] text-sm font-semibold">(Intermediate)</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-[#49709c]">
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Chart reading</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Technical indicators</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Market news analysis</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Economic calendars</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Trading Psychology & Risk Management -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-xl">🧠</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[#0d141c] text-xl font-bold">Trading Psychology & Risk Management</h3>
+                                <p class="text-[#0c77f2] text-sm font-semibold">(Intermediate-Advanced)</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-[#49709c]">
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Controlling emotions</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Managing losses</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Smart decision-making</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-green-500">✓</span>
+                                <span>Risk assessment</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Live Trading Program -->
+                <div class="flex flex-col gap-3 rounded-lg border-2 border-[#0c77f2] bg-slate-50 p-6 text-center mt-4">
+                    <div class="flex justify-center">
+                        <div class="w-16 h-16 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                    </div>
+                    <h3 class="text-[#0d141c] text-2xl font-bold">Live Trading & Mentorship Program</h3>
+                    <p class="text-[#0c77f2] text-sm font-semibold">(Advanced)</p>
+                    <p class="text-[#49709c] mb-4">Trade with experts, receive feedback, and grow your strategy</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <span class="text-green-500">✓</span>
+                            <p class="text-[#49709c] text-sm mt-1">Live sessions</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-green-500">✓</span>
+                            <p class="text-[#49709c] text-sm mt-1">Expert feedback</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-green-500">✓</span>
+                            <p class="text-[#49709c] text-sm mt-1">Strategy development</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-green-500">✓</span>
+                            <p class="text-[#49709c] text-sm mt-1">1-on-1 mentorship</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Features -->
+                <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 mt-4">
+                    <h4 class="text-[#0d141c] text-xl font-bold text-center mb-4">Each Course Includes:</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-500 text-xl">✅</span>
+                            <span class="text-[#49709c]">Video lessons</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-500 text-xl">✅</span>
+                            <span class="text-[#49709c]">Downloadable PDFs</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-500 text-xl">✅</span>
+                            <span class="text-[#49709c]">Practical assignments</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-green-500 text-xl">✅</span>
+                            <span class="text-[#49709c]">Certificate of Completion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials Section -->
+            <div class="flex flex-col gap-10 px-4 py-10 @container animate-slide-up">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+                        What Our Students Say
+                    </h1>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Testimonial 1 -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center">
+                        <div class="flex justify-center">
+                            <div class="w-16 h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-2xl">👩</span>
+                            </div>
+                        </div>
+                        <blockquote class="text-[#49709c] italic text-lg mb-2 leading-relaxed">
+                            "This academy changed my view on money and introduced me to a skill that pays for life!"
+                        </blockquote>
+                        <div class="text-[#0c77f2] font-bold">– Sarah</div>
+                        <div class="text-[#49709c] text-sm">Student</div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center">
+                        <div class="flex justify-center">
+                            <div class="w-16 h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-2xl">👨</span>
+                            </div>
+                        </div>
+                        <blockquote class="text-[#49709c] italic text-lg mb-2 leading-relaxed">
+                            "I went from knowing nothing about forex to making my first profit in 2 months!"
+                        </blockquote>
+                        <div class="text-[#0c77f2] font-bold">– Daniel</div>
+                        <div class="text-[#49709c] text-sm">Entrepreneur</div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center">
+                        <div class="flex justify-center">
+                            <div class="w-16 h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-2xl">👩‍🎓</span>
+                            </div>
+                        </div>
+                        <blockquote class="text-[#49709c] italic text-lg mb-2 leading-relaxed">
+                            "The financial literacy course helped me budget and save effectively. Highly recommended!"
+                        </blockquote>
+                        <div class="text-[#0c77f2] font-bold">– Anita</div>
+                        <div class="text-[#49709c] text-sm">Graduate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 my-8 animate-slide-up">
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                    <div class="text-3xl mb-4">⭐</div>
+                    <div class="text-[#0d141c] font-bold text-xl">7+ Years</div>
+                    <div class="text-[#49709c] text-sm">Experience</div>
+                </div>
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                    <div class="text-3xl mb-4">🤝</div>
+                    <div class="text-[#0d141c] font-bold text-xl">Exness</div>
+                    <div class="text-[#49709c] text-sm">Partner</div>
+                </div>
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                    <div class="text-3xl mb-4">👥</div>
+                    <div class="text-[#0d141c] font-bold text-xl">500+</div>
+                    <div class="text-[#49709c] text-sm">Students</div>
+                </div>
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                    <div class="text-3xl mb-4">🛡️</div>
+                    <div class="text-[#0d141c] font-bold text-xl">24/7</div>
+                    <div class="text-[#49709c] text-sm">Support</div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="@container animate-slide-up">
+                <div class="flex flex-col justify-end gap-6 px-4 py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
+                    <div class="flex flex-col gap-2 text-center">
+                        <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
+                            Ready to Start Your Trading Journey?
+                        </h1>
+                        <p class="text-[#49709c] text-lg mb-6 max-w-[720px] mx-auto">
+                            Join Ayarisi Amos and the Themosempire Fx community in Ghana. Take control of your financial future with proven strategies and expert mentorship.
+                        </p>
+                    </div>
+                    <div class="flex flex-1 justify-center">
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#0c77f2] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Join Academy Now</span>
+                            </a>
+                            <a href="{% url 'core:contact' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Contact Ayarisi</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex justify-center">
+        <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+                <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="{% url 'core:contact' %}">Contact Us</a>
+                </div>
+                <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 TradeWise Academy. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+            </footer>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (scrolled / maxHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progress + '%';
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic content animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up, .animate-slide-left, .animate-slide-right');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0) translateX(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Initialize animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(animateOnScroll, 100);
+        });
+    </script>
+</body>
+</html>

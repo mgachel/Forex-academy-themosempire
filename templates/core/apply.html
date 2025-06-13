@@ -1,0 +1,712 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - TradeWise Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .text-gradient {
+            background: linear-gradient(135deg, #0c77f2 0%, #0c77f2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: #0c77f2;
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        .animate-slide-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .ghana-flag {
+            background: linear-gradient(to right, #ce1126 33.33%, #fcd116 33.33% 66.66%, #006b3f 66.66%);
+            height: 4px;
+        }
+        
+        .form-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #cedae8;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-section h3 {
+            color: #0d141c;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #0c77f2;
+            color: white;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+        
+        .course-card {
+            border: 1px solid #cedae8;
+            border-radius: 12px;
+            padding: 24px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .course-card:hover {
+            border-color: #0c77f2;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(12, 119, 242, 0.1);
+        }
+        
+        .course-card.selected {
+            border-color: #0c77f2;
+            background: rgba(12, 119, 242, 0.05);
+            box-shadow: 0 5px 15px rgba(12, 119, 242, 0.15);
+        }
+        
+        .form-input {
+            background: #ffffff !important;
+            border: 1px solid #cedae8 !important;
+            color: #0d141c !important;
+            border-radius: 0.5rem;
+            padding: 0.625rem 1rem;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #0c77f2 !important;
+            box-shadow: 0 0 0 3px rgba(12, 119, 242, 0.15) !important;
+            outline: none !important;
+        }
+        
+        .form-input:hover {
+            border-color: #0c77f2 !important;
+        }
+        
+        .form-input::placeholder {
+            color: #9ca3af !important;
+        }
+        
+        select.form-input {
+            color: #0d141c !important;
+            background: #ffffff !important;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        
+        select.form-input:focus {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%230c77f2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-10 py-3">
+        <div class="flex items-center gap-4 text-[#0d141c]">
+            <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+                </svg>
+            </div>
+            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise Academy</h2>
+        </div>
+        <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Courses</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="#">Community</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">Resources</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">About Us</a>
+            </div>
+            <div class="flex gap-2">
+                <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Get Started</span>
+                </a>
+                <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#e7edf4] text-[#0d141c] text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Login</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="@container">
+        <div class="@[480px]:p-4">
+            <div class="flex min-h-[280px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuACXQJxtYzhFKyfO12yH_-BZ_PYoUoJ86L8ChJTjFiohy8xdSGu6iSNzwlw7eVG_SmWGLVdwLU_iwfQEzDT6tw0Y0ExeQxvUQCFumQpmGPtJRRb1tGe1N1cdfckVrmnxIlmUJFqLn2Km774jp28hSG6O9PvbRak5WBqHAbSJm7loFQft3peT6MhoKqMcFi7VzFRAAMAhbzK5g');">
+                <div class="flex flex-col gap-2 text-center">
+                    <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                        Apply to TradeWise Academy
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                        Take the first step towards financial freedom. Join Ayarisi Amos and transform your trading skills with our comprehensive program.
+                    </h2>
+                </div>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 mt-4">
+                    <span class="ghana-flag w-6 h-1 rounded-full"></span>
+                    <span class="text-white text-sm font-bold">🇬🇭 Located in Ghana</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-10">
+        <div class="flex flex-col max-w-[960px] flex-1">
+        
+            <!-- Course Overview -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-8 shadow-sm mb-10 animate-slide-up">
+                <h2 class="text-[#0d141c] text-2xl font-bold mb-8 text-center">Choose Your Path</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Basic Course -->
+                    <div class="course-card text-center">
+                        <div class="w-16 h-16 rounded-xl bg-[#0c77f2] flex items-center justify-center mx-auto mb-4 text-2xl">
+                            📚
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-[#0d141c]">Basic Fundamentals</h3>
+                        <p class="text-[#49709c] mb-4">Perfect for beginners starting their trading journey</p>
+                        <div class="text-2xl font-bold text-[#0c77f2] mb-2">$1,997</div>
+                        <div class="text-sm text-[#49709c]">4 weeks program</div>
+                    </div>
+
+                    <!-- Premium Course -->
+                    <div class="course-card text-center">
+                        <div class="w-16 h-16 rounded-xl bg-[#0c77f2] flex items-center justify-center mx-auto mb-4 text-2xl">
+                            🎯
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-[#0d141c]">Premium Mastery</h3>
+                        <p class="text-[#49709c] mb-4">Advanced strategies and professional tools</p>
+                        <div class="text-2xl font-bold text-[#0c77f2] mb-2">$2,997</div>
+                        <div class="text-sm text-[#49709c]">8 weeks program</div>
+                    </div>
+
+                    <!-- VIP Course -->
+                    <div class="course-card text-center">
+                        <div class="w-16 h-16 rounded-xl bg-[#0c77f2] flex items-center justify-center mx-auto mb-4 text-2xl">
+                            👑
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-[#0d141c]">VIP Mentorship</h3>
+                        <p class="text-[#49709c] mb-4">One-on-one coaching with Ayarisi Amos</p>
+                        <div class="text-2xl font-bold text-[#0c77f2] mb-2">$4,997</div>
+                        <div class="text-sm text-[#49709c]">12 weeks program</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mb-6 p-6 rounded-xl {% if message.tags == 'success' %}bg-green-50 border border-green-500 text-green-700{% elif message.tags == 'error' %}bg-red-50 border border-red-500 text-red-700{% elif message.tags == 'warning' %}bg-yellow-50 border border-yellow-500 text-yellow-700{% else %}bg-blue-50 border border-blue-500 text-blue-700{% endif %}">
+                        <div class="flex items-center gap-3">
+                            {% if message.tags == 'success' %}
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            {% elif message.tags == 'error' %}
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            {% elif message.tags == 'warning' %}
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                </svg>
+                            {% endif %}
+                            <span class="font-semibold">{{ message }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Application Form -->
+            <form method="POST" action="{% url 'core:apply' %}" class="space-y-8">
+                {% csrf_token %}
+                
+                <!-- Personal Information -->
+                <div class="form-section animate-slide-up">
+                    <h3>
+                        <div class="step-indicator">1</div>
+                        Personal Information
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="{{ form.first_name.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">First Name *</label>
+                            {{ form.first_name }}
+                            {% if form.first_name.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.first_name.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.last_name.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Last Name *</label>
+                            {{ form.last_name }}
+                            {% if form.last_name.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.last_name.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.email.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Email Address *</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.email.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.phone.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Phone Number *</label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.phone.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.date_of_birth.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Date of Birth *</label>
+                            {{ form.date_of_birth }}
+                            {% if form.date_of_birth.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.date_of_birth.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.country.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Country *</label>
+                            {{ form.country }}
+                            {% if form.country.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.country.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="{{ form.city.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">City *</label>
+                            {{ form.city }}
+                            {% if form.city.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.city.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Background Information -->
+                <div class="form-section animate-slide-up" style="animation-delay: 0.1s;">
+                    <h3>
+                        <div class="step-indicator">2</div>
+                        Background Information
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="{{ form.education_level.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Education Level *</label>
+                            {{ form.education_level }}
+                            {% if form.education_level.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.education_level.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.current_occupation.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Current Occupation *</label>
+                            {{ form.current_occupation }}
+                            {% if form.current_occupation.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.current_occupation.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="{{ form.annual_income.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Annual Income (Optional)</label>
+                            {{ form.annual_income }}
+                            {% if form.annual_income.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.annual_income.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Experience -->
+                <div class="form-section animate-slide-up" style="animation-delay: 0.2s;">
+                    <h3>
+                        <div class="step-indicator">3</div>
+                        Trading Experience
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="{{ form.trading_experience.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Trading Experience Level *</label>
+                            {{ form.trading_experience }}
+                            {% if form.trading_experience.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.trading_experience.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.previous_trading_education.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Previous Trading Education</label>
+                            {{ form.previous_trading_education }}
+                            {% if form.previous_trading_education.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.previous_trading_education.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.trading_goals.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Trading Goals *</label>
+                            {{ form.trading_goals }}
+                            {% if form.trading_goals.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.trading_goals.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Selection -->
+                <div class="form-section animate-slide-up" style="animation-delay: 0.3s;">
+                    <h3>
+                        <div class="step-indicator">4</div>
+                        Course Selection
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="{{ form.desired_course.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Desired Course *</label>
+                            {{ form.desired_course }}
+                            {% if form.desired_course.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.desired_course.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.payment_plan.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Payment Plan *</label>
+                            {{ form.payment_plan }}
+                            {% if form.payment_plan.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.payment_plan.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.study_time_per_week.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Study Time Per Week (hours) *</label>
+                            {{ form.study_time_per_week }}
+                            {% if form.study_time_per_week.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.study_time_per_week.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.start_date_preference.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Preferred Start Date *</label>
+                            {{ form.start_date_preference }}
+                            {% if form.start_date_preference.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.start_date_preference.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motivation & Goals -->
+                <div class="form-section animate-slide-up" style="animation-delay: 0.4s;">
+                    <h3>
+                        <div class="step-indicator">5</div>
+                        Motivation & Goals
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="{{ form.motivation.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Why do you want to learn forex trading? *</label>
+                            {{ form.motivation }}
+                            {% if form.motivation.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.motivation.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.financial_goals.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Financial Goals *</label>
+                            {{ form.financial_goals }}
+                            {% if form.financial_goals.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.financial_goals.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.risk_tolerance.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Risk Tolerance *</label>
+                            {{ form.risk_tolerance }}
+                            {% if form.risk_tolerance.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.risk_tolerance.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section animate-slide-up" style="animation-delay: 0.5s;">
+                    <h3>
+                        <div class="step-indicator">6</div>
+                        Additional Information
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="{{ form.how_did_you_hear.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">How did you hear about us? *</label>
+                            {{ form.how_did_you_hear }}
+                            {% if form.how_did_you_hear.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.how_did_you_hear.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.additional_comments.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Additional Comments</label>
+                            {{ form.additional_comments }}
+                            {% if form.additional_comments.errors %}
+                                <div class="mt-1 text-red-500 text-sm">
+                                    {% for error in form.additional_comments.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center animate-slide-up" style="animation-delay: 0.6s;">
+                    <button type="submit" 
+                            class="bg-[#0c77f2] text-white py-4 px-12 rounded-lg font-bold text-xl transition-all duration-300 hover:shadow-lg hover:bg-[#0a65d0]">
+                        Submit Application
+                    </button>
+                    <p class="text-[#49709c] mt-4 text-sm">
+                        By submitting this application, you agree to our terms and conditions.
+                        We will review your application within 2-3 business days.
+                    </p>
+                </div>
+            </form>
+
+            <!-- Call to Action -->
+            <div class="@container animate-slide-up mt-16">
+                <div class="flex flex-col justify-end gap-6 px-4 py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
+                    <div class="flex flex-col gap-2 text-center">
+                        <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
+                            Have Questions About Our Program?
+                        </h1>
+                        <p class="text-[#49709c] text-lg mb-6 max-w-[720px] mx-auto">
+                            Our team is ready to help you determine which course is right for you. We're committed to helping you succeed in your trading journey.
+                        </p>
+                    </div>
+                    <div class="flex flex-1 justify-center">
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="{% url 'core:contact' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#0c77f2] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Contact Us</span>
+                            </a>
+                            <a href="{% url 'core:about' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Learn More</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex justify-center">
+        <div class="flex max-w-[960px] flex-1 flex-col">
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4 justify-center md:justify-start">
+                            <div class="size-4">
+                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="#0c77f2"></path>
+                                </svg>
+                            </div>
+                            <div class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise</div>
+                        </div>
+                        <p class="text-[#49709c] text-center md:text-left">
+                            Revolutionizing forex education through expert mentorship and proven strategies
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-[#0d141c] font-semibold mb-4">Platform</h4>
+                        <ul class="space-y-2 text-[#49709c]">
+                            <li><a href="{% url 'core:about' %}" class="hover:text-[#0c77f2] transition-colors">About</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Careers</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Blog</a></li>
+                            <li><a href="{% url 'core:contact' %}" class="hover:text-[#0c77f2] transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-[#0d141c] font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2 text-[#49709c]">
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Privacy</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Terms</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Security</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-[#0d141c] font-semibold mb-4">Contact</h4>
+                        <ul class="space-y-2 text-[#49709c]">
+                            <li><a href="tel:+233596688947" class="hover:text-[#0c77f2] transition-colors">+233 59 668 8947</a></li>
+                            <li><a href="mailto:Themosempire@gmail.com" class="hover:text-[#0c77f2] transition-colors">Themosempire@gmail.com</a></li>
+                            <li>Ghana, West Africa</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-[#e7edf4] pt-8 text-center text-[#49709c]">
+                    <p>© 2024 TradeWise Academy. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+                </div>
+            </footer>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (scrolled / maxHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progress + '%';
+        });
+
+        // Dynamic content animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Initialize animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(animateOnScroll, 100);
+            
+            // Form validation feedback
+            const form = document.querySelector('form');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                input.classList.add('form-input');
+                
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() === '' && this.hasAttribute('required')) {
+                        this.style.borderColor = '#ef4444';
+                    } else if (this.value.trim() !== '') {
+                        this.style.borderColor = '#10b981';
+                    }
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        this.style.borderColor = '#10b981';
+                    }
+                });
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75');
+                
+                // Add spinner
+                const spinner = document.createElement('div');
+                spinner.className = 'inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2';
+                submitBtn.prepend(spinner);
+            });
+        });
+    </script>
+</body>
+</html>
