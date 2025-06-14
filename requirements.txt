@@ -3,4 +3,4 @@ gunicorn
 psycopg2-binary
 dj-database-url==2.3.0
 whitenoise
-
+django-jazzmin
