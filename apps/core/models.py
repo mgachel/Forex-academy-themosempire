@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.html import format_html
 
 class Application(models.Model):
     EXPERIENCE_CHOICES = [
@@ -11,16 +12,10 @@ class Application(models.Model):
     ]
     
     COURSE_TYPE_CHOICES = [
-        ('basic', 'Basic Forex Fundamentals ($1,997)'),
-        ('premium', 'Premium Trading Mastery ($2,997)'),
-        ('vip', 'VIP Mentorship Program ($4,997)'),
+        ('premium', 'complete trading course'),
     ]
     
-    PAYMENT_PLAN_CHOICES = [
-        ('full', 'Full Payment (5% discount)'),
-        ('installments_3', '3 Monthly Installments'),
-        ('installments_6', '6 Monthly Installments'),
-    ]
+   
     
     EDUCATION_CHOICES = [
         ('high_school', 'High School'),
@@ -65,7 +60,7 @@ class Application(models.Model):
     
     # Course Selection
     desired_course = models.CharField(max_length=20, choices=COURSE_TYPE_CHOICES)
-    payment_plan = models.CharField(max_length=20, choices=PAYMENT_PLAN_CHOICES)
+    
     
     # Commitment & Availability
     study_time_per_week = models.IntegerField(
@@ -94,7 +89,7 @@ class Application(models.Model):
     # Additional Information
     how_did_you_hear = models.CharField(
         max_length=100,
-        help_text="How did you hear about TradeWise Academy?"
+        help_text="How did you hear about Themosempire Fx?"
     )
     additional_comments = models.TextField(
         blank=True,
@@ -146,13 +141,14 @@ class Application(models.Model):
         return self.status == 'approved'
     
     def get_course_price(self):
+        """Return course price based on selected course type"""
         prices = {
             'basic': 1997,
             'premium': 2997,
-            'vip': 4997,
+            'vip': 4997
         }
-        base_price = prices.get(self.desired_course, 0)
         
-        if self.payment_plan == 'full':
-            return base_price * 0.95  # 5% discount
-        return base_price
+        return prices.get(self.desired_course, 2500)  # Default to 2500 if course not found
+    
+    def colored_status(self):
+        return format_html('<span style="color: green;">{}</span>', self.status)

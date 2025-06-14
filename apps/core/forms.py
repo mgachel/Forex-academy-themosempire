@@ -116,14 +116,19 @@ class ContactForm(forms.Form):
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = [
-            'first_name', 'last_name', 'email', 'phone', 'date_of_birth',
-            'country', 'city', 'education_level', 'current_occupation', 'annual_income',
-            'trading_experience', 'previous_trading_education', 'trading_goals',
-            'desired_course', 'payment_plan', 'study_time_per_week', 'start_date_preference',
-            'motivation', 'financial_goals', 'risk_tolerance', 'how_did_you_hear',
-            'additional_comments'
-        ]
+        exclude = ['status', 'applied_at', 'reviewed_at', 'reviewed_by', 
+                  'admin_notes', 'payment_status', 'payment_reference', 
+                  'payment_date']
+        
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+            'start_date_preference': forms.DateInput(attrs={'type': 'date'}),
+            'previous_trading_education': forms.Textarea(attrs={'rows': 3}),
+            'trading_goals': forms.Textarea(attrs={'rows': 3}),
+            'motivation': forms.Textarea(attrs={'rows': 4}),
+            'financial_goals': forms.Textarea(attrs={'rows': 4}),
+            'additional_comments': forms.Textarea(attrs={'rows': 3}),
+        }
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

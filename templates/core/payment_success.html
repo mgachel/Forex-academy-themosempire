@@ -4,20 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Successful - TradeWise Academy</title>
+    <title>Payment Successful - Themosempire Fx</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         * { font-family: 'Inter', sans-serif; }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #0c77f2 0%, #0c77f2 100%);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text;
-        }
         
         .scroll-progress {
             position: fixed;
@@ -36,27 +29,32 @@
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        .ghana-flag {
-            background: linear-gradient(to right, #ce1126 33.33%, #fcd116 33.33% 66.66%, #006b3f 66.66%);
-            height: 4px;
-        }
-
         .success-check {
             animation: success-scale 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
         
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
         @keyframes success-scale {
-            0% { 
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% { 
-                transform: scale(1.2);
-            }
-            100% { 
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(44, 165, 224, 0.2);
+        }
+        
+        .telegram-btn {
+            transition: all 0.3s ease;
         }
     </style>
 </head>
@@ -73,7 +71,7 @@
                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
                 </svg>
             </div>
-            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise Academy</h2>
+            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
         <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9 hidden md:flex">
@@ -87,8 +85,8 @@
     <!-- Success Banner -->
     <div class="@container mb-8">
         <div class="@[480px]:p-4">
-            <div class="flex min-h-[200px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
-                  style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqx7nFGFk13mlKSn4ZkGQ19HcFeQw8SucvQ6GMaMXxrTgWzUn24Sq_PjupVN1oB-yQuZeWbUoGKdZG-V4g4tErAkm4I66AfAJdIOFouMSwHdGTueqyc5fUPK5d5KNtTK7P');">
+            <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
                 <div class="flex flex-col items-center gap-2 text-center">
                     <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center success-check mb-4">
                         <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
@@ -99,7 +97,7 @@
                         Payment Successful!
                     </h1>
                     <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal max-w-2xl">
-                        Thank you for enrolling in TradeWise Academy. We're excited to help you on your trading journey!
+                        Thank you for enrolling in TradeWise Academy. Access your course materials now!
                     </h2>
                 </div>
             </div>
@@ -109,242 +107,112 @@
     <!-- Main Content -->
     <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
         <div class="flex flex-col max-w-[960px] flex-1">
-            <!-- Enrollment Progress -->
-            <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm mb-8 animate-slide-up">
-                <h2 class="text-[#0d141c] text-2xl font-bold mb-8 text-center">Your Enrollment Progress</h2>
+            
+            <!-- Telegram Access Card -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-6 sm:p-12 shadow-sm mb-8 animate-slide-up">
+                <div class="text-center mb-8">
+                    <div class="w-24 h-24 mx-auto bg-[#0088cc]/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fab fa-telegram text-[#0088cc] text-5xl"></i>
+                    </div>
+                    <h2 class="text-[#0d141c] text-2xl sm:text-3xl font-bold mb-4">Join Our Telegram Channel</h2>
+                    <p class="text-[#49709c] text-base sm:text-lg max-w-2xl mx-auto mb-6">
+                        All course materials, trading signals, and community discussions are available in our private Telegram channel. Click the button below to join now!
+                    </p>
+                </div>
                 
-                <div class="relative">
-                    <div class="hidden md:block absolute top-10 left-0 right-0 h-1 bg-[#e7edf4]"></div>
-                    
-                    <div class="flex flex-col md:flex-row justify-between relative">
-                        <div class="flex flex-col items-center mb-8 md:mb-0">
-                            <div class="w-12 h-12 rounded-full bg-[#0c77f2] flex items-center justify-center text-white z-10 mb-2">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <h4 class="text-[#0d141c] font-medium text-center">Payment Complete</h4>
-                            <span class="text-sm text-green-600">Done</span>
-                        </div>
-                        
-                        <div class="flex flex-col items-center mb-8 md:mb-0">
-                            <div class="w-12 h-12 rounded-full bg-[#0c77f2] flex items-center justify-center text-white z-10 mb-2">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h4 class="text-[#0d141c] font-medium text-center">Email Confirmation</h4>
-                            <span class="text-sm text-green-600">Sent</span>
-                        </div>
-                        
-                        <div class="flex flex-col items-center mb-8 md:mb-0">
-                            <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[#49709c] z-10 mb-2">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h4 class="text-[#0d141c] font-medium text-center">Account Setup</h4>
-                            <span class="text-sm text-[#0c77f2]">Next Step</span>
-                        </div>
-                        
-                        <div class="flex flex-col items-center">
-                            <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-[#49709c] z-10 mb-2">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <h4 class="text-[#0d141c] font-medium text-center">Start Learning</h4>
-                            <span class="text-sm text-[#49709c]">Coming Soon</span>
-                        </div>
-                    </div>
+                <div class="flex justify-center mb-8">
+                    <a href="https://t.me/+gkvGqrx5rbEzYTU0" target="_blank" 
+                       class="telegram-btn flex items-center justify-center gap-3 bg-[#0088cc] text-white py-4 px-8 rounded-lg font-bold text-lg pulse">
+                        <i class="fab fa-telegram"></i>
+                        <span>Join Telegram Channel Now</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
-            </div>
-
-            <!-- Order Summary -->
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <!-- Order Details -->
-                <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm animate-slide-up" style="animation-delay: 0.1s;">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white mr-4">
-                            <i class="fas fa-receipt"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-[#0d141c]">Order Details</h3>
-                            <p class="text-[#49709c]">Transaction #TW-{{ transaction_id|default:"89721" }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4 bg-slate-50 rounded-lg p-4">
-                        <div class="flex justify-between py-2 border-b border-[#e7edf4]">
-                            <span class="text-[#49709c]">Course</span>
-                            <span class="text-[#0d141c] font-medium">{{ course_name|default:"TradeWise Premium" }}</span>
-                        </div>
-                        
-                        <div class="flex justify-between py-2 border-b border-[#e7edf4]">
-                            <span class="text-[#49709c]">Date</span>
-                            <span class="text-[#0d141c] font-medium">{{ order_date|default:"June 12, 2025" }}</span>
-                        </div>
-                        
-                        <div class="flex justify-between py-2 border-b border-[#e7edf4]">
-                            <span class="text-[#49709c]">Access</span>
-                            <span class="text-[#0d141c] font-medium">12 Months</span>
-                        </div>
-                        
-                        <div class="flex justify-between py-4">
-                            <span class="text-[#0d141c] text-lg font-bold">Total Paid</span>
-                            <span class="text-[#0c77f2] font-bold text-xl">GHS {{ amount_paid|default:"2,997" }}</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 p-4 rounded-lg bg-green-50 border border-green-100 text-green-700 flex items-center">
-                        <i class="fas fa-shield-alt text-green-500 mr-3"></i>
-                        <span class="text-sm">Your payment was processed securely</span>
-                    </div>
-                </div>
-
-                <!-- What's Included -->
-                <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm animate-slide-up" style="animation-delay: 0.2s;">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white mr-4">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-[#0d141c]">What's Included</h3>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <p class="text-[#49709c]">Full access to all course materials and videos</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <p class="text-[#49709c]">Weekly live trading sessions with Ayarisi Amos</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <p class="text-[#49709c]">Private community membership for continuous support</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <p class="text-[#49709c]">Trading tools, indicators and proprietary analytics</p>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <p class="text-[#49709c]">12 months of mentor support and guidance</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Next Steps -->
-            <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm mb-8 animate-slide-up" style="animation-delay: 0.3s;">
-                <h2 class="text-[#0d141c] text-2xl font-bold mb-6">Next Steps</h2>
                 
-                <div class="space-y-6">
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-6 text-amber-800">
                     <div class="flex items-start">
-                        <div class="w-10 h-10 rounded-full bg-[#0c77f2] flex items-center justify-center text-white font-medium mr-4 flex-shrink-0">1</div>
+                        <i class="fas fa-exclamation-circle mt-1 mr-3 text-amber-500"></i>
+                        <p class="text-sm">
+                            <span class="font-bold">Important:</span> Please join the Telegram channel immediately to access your course materials. The channel link will expire in 24 hours.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Details -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm mb-8 animate-slide-up" style="animation-delay: 0.1s;">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white mr-4">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-[#0d141c]">Payment Confirmed</h3>
+                        <p class="text-[#49709c]">Your payment of GHS 20,000 has been received</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-4 rounded-lg bg-green-50 border border-green-100 text-green-700 flex items-center">
+                    <i class="fas fa-shield-alt text-green-500 mr-3"></i>
+                    <span class="text-sm">Your transaction was processed securely</span>
+                </div>
+            </div>
+            
+            <!-- What's Next -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm mb-8 animate-slide-up" style="animation-delay: 0.2s;">
+                <h3 class="text-xl font-bold text-[#0d141c] mb-6">What's Next?</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-[#0c77f2] flex items-center justify-center text-white font-medium mr-4 flex-shrink-0">1</div>
                         <div>
-                            <h3 class="text-lg font-bold text-[#0d141c] mb-2">Check Your Email</h3>
-                            <p class="text-[#49709c] mb-2">We've sent a confirmation to {{ email|default:"your email" }} with your login details and course access instructions.</p>
-                            <div class="inline-flex items-center bg-slate-100 px-3 py-1 rounded-full text-[#49709c] text-sm">
-                                <i class="fas fa-envelope mr-2"></i>
-                                <span>Check both inbox and spam folders</span>
-                            </div>
+                            <p class="text-[#49709c]"><span class="font-semibold text-[#0d141c]">Join the Telegram channel</span> using the button above to access all course materials.</p>
                         </div>
                     </div>
                     
                     <div class="flex items-start">
-                        <div class="w-10 h-10 rounded-full bg-[#0c77f2] flex items-center justify-center text-white font-medium mr-4 flex-shrink-0">2</div>
+                        <div class="w-8 h-8 rounded-full bg-[#0c77f2] flex items-center justify-center text-white font-medium mr-4 flex-shrink-0">2</div>
                         <div>
-                            <h3 class="text-lg font-bold text-[#0d141c] mb-2">Set Up Your Account</h3>
-                            <p class="text-[#49709c] mb-2">Complete your profile setup to personalize your learning experience and track your progress.</p>
-                            <div class="inline-flex items-center bg-slate-100 px-3 py-1 rounded-full text-[#49709c] text-sm">
-                                <i class="fas fa-user-circle mr-2"></i>
-                                <span>Takes approximately 5 minutes</span>
-                            </div>
+                            <p class="text-[#49709c]"><span class="font-semibold text-[#0d141c]">Introduce yourself</span> in the welcome thread so our mentors can get to know you.</p>
                         </div>
                     </div>
                     
                     <div class="flex items-start">
-                        <div class="w-10 h-10 rounded-full bg-[#0c77f2] flex items-center justify-center text-white font-medium mr-4 flex-shrink-0">3</div>
+                        <div class="w-8 h-8 rounded-full bg-[#0c77f2] flex items-center justify-center text-white font-medium mr-4 flex-shrink-0">3</div>
                         <div>
-                            <h3 class="text-lg font-bold text-[#0d141c] mb-2">Join Our Community</h3>
-                            <p class="text-[#49709c] mb-2">Connect with fellow traders and our mentors in our exclusive community platform.</p>
-                            <div class="inline-flex items-center bg-slate-100 px-3 py-1 rounded-full text-[#49709c] text-sm">
-                                <i class="fas fa-users mr-2"></i>
-                                <span>Invitation link will be sent via email</span>
-                            </div>
+                            <p class="text-[#49709c]"><span class="font-semibold text-[#0d141c]">Check the pinned messages</span> for the course schedule and upcoming live sessions.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Course Overview -->
-            <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm mb-8 animate-slide-up" style="animation-delay: 0.4s;">
-                <h2 class="text-[#0d141c] text-2xl font-bold mb-6 text-center">Course Overview</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="rounded-lg border border-[#cedae8] p-5 text-center">
-                        <div class="w-14 h-14 rounded-xl bg-[#0c77f2] flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                            📚
-                        </div>
-                        <h3 class="text-lg font-bold text-[#0d141c] mb-1">Weeks 1-4</h3>
-                        <h4 class="text-[#0c77f2] text-base font-medium mb-3">Fundamentals</h4>
-                        <p class="text-[#49709c] text-sm">Trading basics, market psychology, and risk management</p>
-                    </div>
-                    
-                    <div class="rounded-lg border border-[#cedae8] p-5 text-center">
-                        <div class="w-14 h-14 rounded-xl bg-[#0c77f2] flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                            📊
-                        </div>
-                        <h3 class="text-lg font-bold text-[#0d141c] mb-1">Weeks 5-8</h3>
-                        <h4 class="text-[#0c77f2] text-base font-medium mb-3">Strategy Development</h4>
-                        <p class="text-[#49709c] text-sm">Technical analysis, chart patterns, and profitable strategies</p>
-                    </div>
-                    
-                    <div class="rounded-lg border border-[#cedae8] p-5 text-center">
-                        <div class="w-14 h-14 rounded-xl bg-[#0c77f2] flex items-center justify-center mx-auto mb-4 text-white text-2xl">
-                            🏆
-                        </div>
-                        <h3 class="text-lg font-bold text-[#0d141c] mb-1">Weeks 9-12</h3>
-                        <h4 class="text-[#0c77f2] text-base font-medium mb-3">Advanced Trading</h4>
-                        <p class="text-[#49709c] text-sm">Portfolio management and advanced scaling techniques</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Success Community -->
-            <div class="rounded-xl border border-[#cedae8] bg-slate-50 p-6 mb-8 animate-slide-up" style="animation-delay: 0.5s;">
-                <div class="text-center mb-6">
-                    <div class="w-16 h-16 rounded-full bg-[#0c77f2]/10 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-users text-[#0c77f2] text-2xl"></i>
-                    </div>
-                    <h2 class="text-[#0d141c] text-2xl font-bold mb-2">Join Our Success Community</h2>
-                    <p class="text-[#49709c]">You're now part of our elite community of successful traders</p>
+            
+            <!-- Need Help? -->
+            <div class="rounded-xl border border-[#cedae8] bg-slate-50 p-6 mb-8 animate-slide-up" style="animation-delay: 0.3s;">
+                <div class="text-center mb-4">
+                    <h3 class="text-xl font-bold text-[#0d141c] mb-2">Need Help?</h3>
+                    <p class="text-[#49709c]">If you have any questions or need assistance:</p>
                 </div>
                 
-                <div class="grid grid-cols-3 gap-4 mt-8">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-[#0d141c] mb-1">500+</div>
-                        <div class="text-[#49709c] text-sm">Active Students</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-[#0d141c] mb-1">98%</div>
-                        <div class="text-[#49709c] text-sm">Success Rate</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-[#0d141c] mb-1">24/7</div>
-                        <div class="text-[#49709c] text-sm">Support Access</div>
-                    </div>
+                <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <a href="https://wa.me/233596688947" target="_blank" class="flex items-center gap-2 px-4 py-3 rounded-lg bg-[#25D366] text-white">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Support</span>
+                    </a>
+                    <a href="tel:+233596688947" class="flex items-center gap-2 px-4 py-3 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+                        <i class="fas fa-phone"></i>
+                        <span>+233 59 668 8947</span>
+                    </a>
+                    <a href="mailto:Themosempire@gmail.com" class="flex items-center gap-2 px-4 py-3 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email Us</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12 animate-slide-up" style="animation-delay: 0.6s;">
-                <a href="{% url 'core:home' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#0c77f2] text-slate-50 text-base font-bold leading-normal tracking-[0.015em] transition-all hover:bg-[#0a65d0]">
+            <!-- Action Button -->
+            <div class="flex justify-center mb-12 animate-slide-up" style="animation-delay: 0.4s;">
+                <a href="{% url 'core:home' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em] transition-all hover:bg-[#dbe5f0]">
                     <i class="fas fa-home mr-3"></i>
-                    <span class="truncate">Return Home</span>
-                </a>
-                
-                <a href="{% url 'core:contact' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em] transition-all hover:bg-[#dbe5f0]">
-                    <i class="fas fa-envelope mr-3"></i>
-                    <span class="truncate">Contact Support</span>
+                    <span class="truncate">Return to Homepage</span>
                 </a>
             </div>
         </div>
@@ -354,15 +222,11 @@
     <footer class="flex justify-center mt-16 border-t border-[#e7edf4]">
         <div class="flex max-w-[960px] flex-1 flex-col">
             <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-                <div class="flex items-center justify-center gap-4 mb-4">
-                    <div class="flex items-center text-[#0c77f2]">
-                        <i class="fas fa-shield-alt mr-2"></i>
-                        <span class="text-sm">SSL Secured</span>
-                    </div>
-                    <div class="flex items-center text-[#0c77f2]">
-                        <i class="fas fa-lock mr-2"></i>
-                        <span class="text-sm">256-bit Encryption</span>
-                    </div>
+                <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Refund Policy</a>
+                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="{% url 'core:contact' %}">Contact Us</a>
                 </div>
                 <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 TradeWise Academy. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
             </footer>
@@ -398,6 +262,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(animateOnScroll, 100);
             document.documentElement.style.scrollBehavior = 'smooth';
+        });
+
+        // Tracking Telegram clicks
+        document.querySelector('.telegram-btn').addEventListener('click', function() {
+            // You can add analytics tracking here if needed
+            console.log('Telegram button clicked');
         });
     </script>
 </body>

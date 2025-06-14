@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - TradeWise Academy</title>
+    <title>Contact Us - Themosempire Fx</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
@@ -32,6 +33,19 @@
             transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(12, 119, 242, 0.1), 0 10px 10px -5px rgba(12, 119, 242, 0.04);
+        }
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
@@ -46,22 +60,18 @@
                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
                 </svg>
             </div>
-            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise Academy</h2>
+            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
         <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
-                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Courses</a>
-                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="#">Community</a>
-                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">Resources</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Home</a>
+                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">About Us</a>
             </div>
             <div class="flex gap-2">
                 <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]">
                     <span class="truncate">Get Started</span>
                 </a>
-                <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#e7edf4] text-[#0d141c] text-sm font-bold leading-normal tracking-[0.015em]">
-                    <span class="truncate">Login</span>
-                </button>
             </div>
         </div>
     </header>
@@ -73,13 +83,13 @@
             <!-- Hero Section -->
             <div class="@container">
                 <div class="@[480px]:p-4">
-                    <div class="flex min-h-[280px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
-                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-RCRQcFl7oP0_FY-wCfcJrDAWrSvwZnpGucnpR3N_JnQn-46cjQxoGb0_5Skxrw2Btna6JYaH_vBoCzQXkovP9vEzIqotN0HSrZvuKWaG_tXDoj-q-O-zkk97W6hqlLKAKH18ukawwyw');">
+                    <div class="flex min-h-[320px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
                         <div class="flex flex-col gap-2 text-center">
                             <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                                Contact Ayarisi Amos
+                                Get In Touch
                             </h1>
-                            <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                            <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal max-w-2xl">
                                 Ready to transform your trading journey? Connect with our expert mentor for personalized guidance and support
                             </h2>
                         </div>
@@ -91,257 +101,207 @@
                 </div>
             </div>
 
-            <!-- Contact Form Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 animate-slide-up">
-                <!-- Contact Form -->
-                <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <h2 class="text-[#0d141c] text-2xl font-bold mb-6">Send a Message</h2>
-                    
-                    <!-- Display messages -->
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="mb-4 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 border border-green-500 text-green-700{% elif message.tags == 'error' %}bg-red-100 border border-red-500 text-red-700{% else %}bg-blue-100 border border-blue-500 text-blue-700{% endif %}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    
-                    <form class="space-y-6" method="POST" action="{% url 'core:contact' %}">
-                        {% csrf_token %}
-                        
-                        <!-- Name Field -->
-                        <div>
-                            <label for="{{ form.name.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Full Name</label>
-                            <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="w-full px-4 py-2 rounded-lg border border-[#cedae8] focus:outline-none focus:ring-2 focus:ring-[#0c77f2] focus:border-transparent" placeholder="Your full name">
-                            {% if form.name.errors %}
-                                <div class="mt-1 text-red-500 text-sm">
-                                    {% for error in form.name.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <!-- Email Field -->
-                        <div>
-                            <label for="{{ form.email.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Email Address</label>
-                            <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" class="w-full px-4 py-2 rounded-lg border border-[#cedae8] focus:outline-none focus:ring-2 focus:ring-[#0c77f2] focus:border-transparent" placeholder="Your email address">
-                            {% if form.email.errors %}
-                                <div class="mt-1 text-red-500 text-sm">
-                                    {% for error in form.email.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <!-- Subject Field -->
-                        <div>
-                            <label for="{{ form.subject.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Subject</label>
-                            <input type="text" name="{{ form.subject.name }}" id="{{ form.subject.id_for_label }}" class="w-full px-4 py-2 rounded-lg border border-[#cedae8] focus:outline-none focus:ring-2 focus:ring-[#0c77f2] focus:border-transparent" placeholder="Message subject">
-                            {% if form.subject.errors %}
-                                <div class="mt-1 text-red-500 text-sm">
-                                    {% for error in form.subject.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <!-- Message Field -->
-                        <div>
-                            <label for="{{ form.message.id_for_label }}" class="block text-[#0d141c] font-medium mb-2">Message</label>
-                            <textarea name="{{ form.message.name }}" id="{{ form.message.id_for_label }}" rows="4" class="w-full px-4 py-2 rounded-lg border border-[#cedae8] focus:outline-none focus:ring-2 focus:ring-[#0c77f2] focus:border-transparent" placeholder="Your message"></textarea>
-                            {% if form.message.errors %}
-                                <div class="mt-1 text-red-500 text-sm">
-                                    {% for error in form.message.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <!-- Submit Button -->
-                        <button type="submit" class="w-full bg-[#0c77f2] text-white py-3 px-6 rounded-lg font-bold text-base hover:bg-[#0b6de0] transition-colors duration-300">
-                            Send Message
-                        </button>
-                    </form>
+            <!-- Contact Methods Cards - Expanded and Prominent -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                <!-- WhatsApp Card -->
+                <div class="contact-card rounded-xl border border-[#cedae8] bg-white p-8 text-center animate-slide-up shadow-sm">
+                    <div class="w-20 h-20 rounded-full bg-[#25D366]/10 flex items-center justify-center mx-auto mb-6">
+                        <i class="fab fa-whatsapp text-[#25D366] text-4xl contact-icon"></i>
+                    </div>
+                    <h3 class="text-[#0d141c] text-xl font-bold mb-2">WhatsApp</h3>
+                    <p class="text-[#49709c] mb-6">Get instant responses through direct messaging</p>
+                    <a href="https://wa.me/233596688947" target="_blank" class="inline-flex items-center justify-center bg-[#25D366] text-white py-3 px-6 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300 w-full">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Chat on WhatsApp
+                    </a>
+                    <p class="text-[#49709c] text-sm mt-4">+233 59 668 8947</p>
                 </div>
-                
-                <!-- Contact Methods -->
-                <div class="space-y-6 animate-slide-up" style="animation-delay: 0.2s;">
-                    <!-- WhatsApp -->
-                    <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
-                                    <path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5L128,145.67a72,72,0,0,1-72-72l16.33-19.58a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,47.89,8.84l-32,8A8,8,0,0,0,8,24a192,192,0,0,0,192,192,8,8,0,0,0,7.16-7.89l8-32A8,8,0,0,0,187.58,144.84Z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold">WhatsApp</h3>
-                                <p class="text-[#49709c]">Get instant responses</p>
-                            </div>
-                        </div>
-                        <a href="https://wa.me/233596688947" target="_blank" class="inline-flex bg-[#25D366] text-white py-2 px-4 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
-                            Chat Now on +233596688947
-                        </a>
-                    </div>
 
-                    <!-- Email -->
-                    <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
-                                    <path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,16L128,112,32,64ZM32,192V82.86l88.36,73.63a8,8,0,0,0,10.51,0L224,82.86V192Z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold">Email</h3>
-                                <p class="text-[#49709c]">Professional inquiries</p>
-                            </div>
-                        </div>
-                        <a href="mailto:Themosempire@gmail.com" class="inline-flex bg-[#0c77f2] text-white py-2 px-4 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
-                            Send Email on Themosempire@gmail.com
-                        </a>
+                <!-- Email Card -->
+                <div class="contact-card rounded-xl border border-[#cedae8] bg-white p-8 text-center animate-slide-up shadow-sm" style="animation-delay: 0.1s;">
+                    <div class="w-20 h-20 rounded-full bg-[#0c77f2]/10 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-envelope text-[#0c77f2] text-4xl contact-icon"></i>
                     </div>
+                    <h3 class="text-[#0d141c] text-xl font-bold mb-2">Email</h3>
+                    <p class="text-[#49709c] mb-6">For detailed inquiries and business opportunities</p>
+                    <a href="mailto:Themosempire@gmail.com" class="inline-flex items-center justify-center bg-[#0c77f2] text-white py-3 px-6 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300 w-full">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Send Email
+                    </a>
+                    <p class="text-[#49709c] text-sm mt-4">Themosempire@gmail.com</p>
+                </div>
 
-                    <!-- Phone -->
-                    <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
-                                    <path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold">Phone</h3>
-                                <p class="text-[#49709c]">Direct consultation</p>
-                            </div>
-                        </div>
-                        <a href="tel:+233596688947" class="inline-flex bg-[#0c77f2] text-white py-2 px-4 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
-                            Call Now on +233596688947
-                        </a>
+                <!-- Phone Call Card -->
+                <div class="contact-card rounded-xl border border-[#cedae8] bg-white p-8 text-center animate-slide-up shadow-sm" style="animation-delay: 0.2s;">
+                    <div class="w-20 h-20 rounded-full bg-[#0c77f2]/10 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-phone-alt text-[#0c77f2] text-4xl contact-icon"></i>
                     </div>
+                    <h3 class="text-[#0d141c] text-xl font-bold mb-2">Phone Call</h3>
+                    <p class="text-[#49709c] mb-6">Direct consultation and immediate assistance</p>
+                    <a href="tel:+233596688947" class="inline-flex items-center justify-center bg-[#0c77f2] text-white py-3 px-6 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300 w-full">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        Call Now
+                    </a>
+                    <p class="text-[#49709c] text-sm mt-4">+233 59 668 8947</p>
                 </div>
             </div>
 
-            <!-- Personal Info Card -->
-            <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-6 mt-10 animate-slide-up">
-                <div class="flex items-center gap-6 mb-6">
-                    <div class="w-16 h-16 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white text-2xl">
-                        👤
+            <!-- Response Time Card -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-8 mt-8 animate-slide-up shadow-sm" style="animation-delay: 0.3s;">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-20 h-20 flex-shrink-0 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-clock text-green-600 text-3xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-[#0d141c] text-2xl font-bold">Ayarisi Amos</h3>
-                        <p class="text-[#0c77f2] text-base font-semibold">Master Trader & Educator</p>
-                        <p class="text-[#49709c]">Exness Partner - Ghana</p>
+                        <h3 class="text-[#0d141c] text-xl font-bold mb-2">Fast Response Times</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                            <div class="p-4 rounded-lg bg-slate-50 text-center">
+                                <div class="font-bold text-[#0c77f2]">WhatsApp</div>
+                                <div class="text-[#49709c] text-sm">Within 1 hour</div>
+                            </div>
+                            <div class="p-4 rounded-lg bg-slate-50 text-center">
+                                <div class="font-bold text-[#0c77f2]">Email</div>
+                                <div class="text-[#49709c] text-sm">Within 24 hours</div>
+                            </div>
+                            <div class="p-4 rounded-lg bg-slate-50 text-center">
+                                <div class="font-bold text-[#0c77f2]">Phone</div>
+                                <div class="text-[#49709c] text-sm">Immediate</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p class="text-[#49709c] leading-relaxed">
-                    With over 7 years of trading experience, Ayarisi specializes in swing and intraday trading strategies. 
-                    As an Exness partner in Ghana, he brings real-world market insights to help you succeed.
-                </p>
             </div>
 
-            <!-- Quick Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 my-10 animate-slide-up">
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">⭐</div>
-                    <div class="text-[#0d141c] font-bold text-xl">7+ Years</div>
-                    <div class="text-[#49709c] text-sm">Experience</div>
-                </div>
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">👥</div>
-                    <div class="text-[#0d141c] font-bold text-xl">500+</div>
-                    <div class="text-[#49709c] text-sm">Students</div>
-                </div>
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">🏆</div>
-                    <div class="text-[#0d141c] font-bold text-xl">95%</div>
-                    <div class="text-[#49709c] text-sm">Success Rate</div>
-                </div>
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">⚡</div>
-                    <div class="text-[#0d141c] font-bold text-xl">24/7</div>
-                    <div class="text-[#49709c] text-sm">Support</div>
+            <!-- Personal Info Card - Enhanced -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-8 mt-8 animate-slide-up shadow-sm" style="animation-delay: 0.4s;">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-32 h-32 rounded-full bg-[#0c77f2]/10 flex items-center justify-center text-3xl text-[#0c77f2] flex-shrink-0">
+                        👨‍💼
+                    </div>
+                    <div>
+                        <div class="mb-4 text-center md:text-left">
+                            <h3 class="text-[#0d141c] text-2xl font-bold">Ayarisi Amos</h3>
+                            <p class="text-[#0c77f2] text-lg font-semibold">Master Trader & Educator</p>
+                            <p class="text-[#49709c]">Exness Partner - Ghana</p>
+                        </div>
+                        <p class="text-[#49709c] leading-relaxed mb-6">
+                            With over 7 years of trading experience, Ayarisi specializes in swing and intraday trading strategies. 
+                            As an Exness partner in Ghana, he brings real-world market insights to help you succeed in the financial markets.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://wa.me/233596688947" class="inline-flex items-center justify-center bg-[#25D366] text-white py-2 px-4 rounded-lg text-sm">
+                                <i class="fab fa-whatsapp mr-2"></i> Message Directly
+                            </a>
+                            <a href="tel:+233596688947" class="inline-flex items-center justify-center bg-[#0c77f2] text-white py-2 px-4 rounded-lg text-sm">
+                                <i class="fas fa-phone-alt mr-2"></i> Schedule Call
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Social Media -->
-            <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center mb-10 animate-slide-up">
-                <h3 class="text-[#0d141c] text-xl font-bold mb-6">Follow Us</h3>
-                <div class="flex gap-6 justify-center">
-                    <a href="https://wa.me/233596688947" target="_blank" class="w-12 h-12 rounded-lg bg-[#25D366] flex items-center justify-center transition-transform hover:scale-110 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
-                            <path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5L128,145.67a72,72,0,0,1-72-72l16.33-19.58a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,47.89,8.84l-32,8A8,8,0,0,0,8,24a192,192,0,0,0,192,192,8,8,0,0,0,7.16-7.89l8-32A8,8,0,0,0,187.58,144.84Z"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:Themosempire@gmail.com" class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center transition-transform hover:scale-110 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
-                            <path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,16L128,112,32,64ZM32,192V82.86l88.36,73.63a8,8,0,0,0,10.51,0L224,82.86V192Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="w-12 h-12 rounded-lg bg-[#E4405F] flex items-center justify-center transition-transform hover:scale-110 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
-                            <path d="M176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24ZM128,176a48,48,0,1,1,48-48A48.05,48.05,0,0,1,128,176Zm60-96a12,12,0,1,1,12-12A12,12,0,0,1,188,80Z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="w-12 h-12 rounded-lg bg-[#1877F2] flex items-center justify-center transition-transform hover:scale-110 text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
-                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63A88,88,0,1,1,136,215.63Z"/>
-                        </svg>
-                    </a>
+            <!-- Business Hours -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-8 mt-8 animate-slide-up shadow-sm" style="animation-delay: 0.5s;">
+                <h3 class="text-[#0d141c] text-xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-calendar-alt text-[#0c77f2] mr-3"></i>
+                    Business Hours
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="flex justify-between py-3 border-b border-[#e7edf4]">
+                            <span class="text-[#49709c]">Monday - Friday</span>
+                            <span class="text-[#0d141c] font-semibold">8:00 AM - 8:00 PM GMT</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-[#e7edf4]">
+                            <span class="text-[#49709c]">Saturday</span>
+                            <span class="text-[#0d141c] font-semibold">10:00 AM - 4:00 PM GMT</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-[#e7edf4]">
+                            <span class="text-[#49709c]">Sunday</span>
+                            <span class="text-[#0d141c] font-semibold">Emergency support only</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h4 class="text-[#0d141c] font-bold mb-4">Emergency Support</h4>
+                        <p class="text-[#49709c] mb-4">For urgent matters outside business hours, please contact via WhatsApp with "URGENT" in your message.</p>
+                        <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-700 flex items-center text-sm">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            Weekend response times may be longer than usual.
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="rounded-xl border border-[#cedae8] bg-white p-8 mt-8 animate-slide-up shadow-sm" style="animation-delay: 0.6s;">
+                <h3 class="text-[#0d141c] text-xl font-bold mb-6">Frequently Asked Questions</h3>
+                
+                <div class="space-y-4">
+                    <div class="border border-[#e7edf4] rounded-lg p-4">
+                        <h4 class="text-[#0d141c] font-bold">What's the best way to contact you?</h4>
+                        <p class="text-[#49709c] mt-2">WhatsApp is the fastest way to reach us for quick questions. For detailed inquiries, email is preferred.</p>
+                    </div>
+                    
+                    <div class="border border-[#e7edf4] rounded-lg p-4">
+                        <h4 class="text-[#0d141c] font-bold">How quickly will I get a response?</h4>
+                        <p class="text-[#49709c] mt-2">We typically respond to WhatsApp messages within 1 hour, emails within 24 hours, and phone calls immediately during business hours.</p>
+                    </div>
+                    
+                    <div class="border border-[#e7edf4] rounded-lg p-4">
+                        <h4 class="text-[#0d141c] font-bold">Can I schedule a video consultation?</h4>
+                        <p class="text-[#49709c] mt-2">Yes! Please send us a message via WhatsApp or email to schedule a video call at your convenience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center gap-4 mt-8">
+                <a href="https://wa.me/233596688947" target="_blank" class="w-12 h-12 rounded-lg bg-[#25D366] flex items-center justify-center transition-transform hover:scale-110 text-white">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+                <a href="mailto:Themosempire@gmail.com" class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center transition-transform hover:scale-110 text-white">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+                <a href="tel:+233596688947" class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center transition-transform hover:scale-110 text-white">
+                    <i class="fas fa-phone-alt text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-lg bg-[#E4405F] flex items-center justify-center transition-transform hover:scale-110 text-white">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-lg bg-[#1877F2] flex items-center justify-center transition-transform hover:scale-110 text-white">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
             </div>
 
             <!-- Location Section -->
-            <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-8 mb-10 animate-slide-up">
-                <h2 class="text-[#0d141c] text-2xl font-bold text-center mb-8">Our Location</h2>
+            <div class="rounded-xl border border-[#cedae8] bg-white p-8 mt-8 mb-10 animate-slide-up" style="animation-delay: 0.7s;">
+                <h3 class="text-[#0d141c] text-xl font-bold mb-6 text-center">Our Location</h3>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white flex-shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
-                                    <path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128ZM176,16H80A64.07,64.07,0,0,0,16,80v96a64.07,64.07,0,0,0,64,64h96a64.07,64.07,0,0,0,64-64V80A64.07,64.07,0,0,0,176,16Z"/>
-                                </svg>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-1">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold mb-2">🇬🇭 Ghana, West Africa</h3>
-                                <p class="text-[#49709c] leading-relaxed">
+                                <h4 class="text-[#0d141c] font-bold mb-2">🇬🇭 Ghana, West Africa</h4>
+                                <p class="text-[#49709c]">
                                     Proudly based in Ghana, serving traders across West Africa and beyond. 
                                     Our local presence ensures we understand the unique challenges and opportunities 
                                     in the African trading landscape.
                                 </p>
                             </div>
                         </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-lg bg-[#0c77f2] flex items-center justify-center text-white flex-shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
-                                    <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM104,168a8,8,0,0,1-16,0V128a8,8,0,0,1,16,0Zm40,0a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Zm24-40a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold mb-2">Business Hours</h3>
-                                <div class="text-[#49709c] space-y-1">
-                                    <p>Monday - Friday: 8:00 AM - 8:00 PM GMT</p>
-                                    <p>Saturday: 10:00 AM - 4:00 PM GMT</p>
-                                    <p>Sunday: Emergency support only</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                    <!-- Ghana Map Placeholder -->
-                    <div class="h-64 rounded-lg border border-[#cedae8] flex items-center justify-center bg-white">
+                    
+                    <div class="h-48 w-full md:w-80 rounded-xl overflow-hidden border border-[#cedae8] flex items-center justify-center bg-slate-50 flex-shrink-0">
                         <div class="text-center">
-                            <div class="w-20 h-20 rounded-xl bg-[#0c77f2] flex items-center justify-center mx-auto mb-4 text-4xl text-white">
+                            <div class="w-20 h-20 rounded-xl bg-[#0c77f2]/10 flex items-center justify-center mx-auto mb-4 text-4xl">
                                 🇬🇭
                             </div>
-                            <h3 class="text-[#0d141c] text-xl font-bold mb-2">Ghana, West Africa</h3>
-                            <p class="text-[#49709c]">Empowering African traders globally</p>
+                            <h4 class="text-[#0d141c] font-bold">Ghana, West Africa</h4>
+                            <p class="text-[#49709c] text-sm">Empowering African traders globally</p>
                         </div>
                     </div>
                 </div>
@@ -351,9 +311,9 @@
             <div class="@container animate-slide-up">
                 <div class="flex flex-col justify-end gap-6 px-4 py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
                     <div class="flex flex-col gap-2 text-center">
-                        <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
+                        <h2 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
                             Ready to Start Your Trading Journey?
-                        </h1>
+                        </h2>
                         <p class="text-[#49709c] text-lg mb-6 max-w-[720px] mx-auto">
                             Join Ayarisi Amos and the Themosempire Fx community in Ghana. Take control of your financial future with proven strategies and expert mentorship.
                         </p>
@@ -363,9 +323,6 @@
                             <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#0c77f2] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]">
                                 <span class="truncate">Join Academy Now</span>
                             </a>
-                            <a href="{% url 'core:contact' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em]">
-                                <span class="truncate">Contact Ayarisi</span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -374,7 +331,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="flex justify-center">
+    <footer class="flex justify-center mt-16 border-t border-[#e7edf4]">
         <div class="flex max-w-[960px] flex-1 flex-col">
             <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -385,7 +342,7 @@
                                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="#0c77f2"></path>
                                 </svg>
                             </div>
-                            <div class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise</div>
+                            <div class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</div>
                         </div>
                         <p class="text-[#49709c] text-center md:text-left">
                             Revolutionizing forex education through expert mentorship and proven strategies
@@ -419,7 +376,7 @@
                     </div>
                 </div>
                 <div class="border-t border-[#e7edf4] pt-8 text-center text-[#49709c]">
-                    <p>© 2024 TradeWise Academy. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+                    <p>© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
                 </div>
             </footer>
         </div>
@@ -453,40 +410,7 @@
         // Initialize animations on load
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(animateOnScroll, 100);
-            
-            // Enhanced form submission handling
-            const contactForm = document.querySelector('form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.textContent;
-                    
-                    // Add loading state
-                    submitBtn.textContent = 'Sending...';
-                    submitBtn.disabled = true;
-                    submitBtn.classList.add('opacity-75');
-                });
-                
-                // Add real-time validation
-                const inputs = contactForm.querySelectorAll('input, select, textarea');
-                inputs.forEach(input => {
-                    input.addEventListener('blur', function() {
-                        if (this.value.trim() === '' && this.hasAttribute('required')) {
-                            this.classList.add('border-red-500');
-                            this.classList.remove('border-green-500');
-                        } else if (this.value.trim() !== '') {
-                            this.classList.add('border-green-500');
-                            this.classList.remove('border-red-500');
-                        }
-                    });
-                    
-                    input.addEventListener('input', function() {
-                        if (this.value.trim() !== '') {
-                            this.classList.remove('border-red-500');
-                        }
-                    });
-                });
-            }
+            document.documentElement.style.scrollBehavior = 'smooth';
         });
     </script>
 </body>

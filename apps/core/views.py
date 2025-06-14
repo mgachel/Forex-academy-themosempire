@@ -17,32 +17,43 @@ def home(request):
 def about(request):
     return render(request, 'core/about.html') 
 
-def payment_view(request, application_id=None):
-    """Handle payment view with optional application_id"""
-    if application_id:
-        try:
-            application = Application.objects.get(id=application_id)
-            course_price = application.get_course_price()
-            
-            context = {
-                'application': application,
-                'course_price': course_price,
-            }
-            
-            return render(request, 'core/payment.html', context)
-            
-        except Application.DoesNotExist:
-            messages.error(request, 'Application not found.')
-            return redirect('core:home')
-    else:
-        # Simple payment without application
-        context = {
-            'course_price': 1500,  # Default price
-        }
-        return render(request, 'core/payment.html', context)
+def payment_view(request):
+    """Handle payment view with application data from session"""
+    # Get application data from session
+    application_data = request.session.get('application_data', {})
+    course_price = request.session.get('course_price', 2000)  # Default to 2000
+    
+    if not application_data:
+        # If no application data, redirect to application form
+        return redirect('core:apply')
+        
+    context = {
+        'application_data': application_data,
+        'course_price': course_price,
+        'email': application_data.get('email', ''),
+        'full_name': f"{application_data.get('first_name', '')} {application_data.get('last_name', '')}",
+        'phone': application_data.get('phone', ''),
+    }
+    
+    return render(request, 'core/payment.html', context)
 
 def payment_success(request):
-    return render(request, 'core/payment_success.html')
+    """Show payment success page only if payment was completed"""
+    
+    # Check if payment has been completed
+    if not request.session.get('payment_completed', False):
+        messages.error(request, "Please complete your payment before accessing this page.")
+        return redirect('core:payment')  # Redirect to the payment page
+    
+    context = {
+        'payment_reference': request.session.get('payment_reference', '')
+    }
+    
+    # Optional: Clear the payment flag after showing the success page once
+    # This prevents refreshing the success page multiple times
+    request.session['payment_completed'] = False
+    
+    return render(request, 'core/payment_success.html', context)
 
 def contact(request):
     if request.method == 'POST':
@@ -55,13 +66,13 @@ def contact(request):
             message = form.cleaned_data['message']
             
             # Create email subject and body
-            email_subject = f'Contact Form: {dict(form.SUBJECT_CHOICES)[subject]} - From {name}'
+            email_subject = f'Contact Form: {subject} - From {name}'  # Fixed this line
             email_body = f"""
 New contact form submission from TradeWise Academy website:
 
 Name: {name}
 Email: {email}
-Subject: {dict(form.SUBJECT_CHOICES)[subject]}
+Subject: {subject}  # Fixed this line
 
 Message:
 {message}
@@ -72,17 +83,16 @@ Reply directly to: {email}
             """
             
             try:
-                # Send email (you'll need to configure email settings)
+                # Send email
                 send_mail(
                     email_subject,
                     email_body,
-                    settings.DEFAULT_FROM_EMAIL if hasattr(settings, 'DEFAULT_FROM_EMAIL') else 'noreply@tradewise.com',
-                    ['ayarisiamos@tradewise.com'],  # Replace with actual email
+                    settings.DEFAULT_FROM_EMAIL,
+                    ['themosempire@gmail.com'],  # Updated with your actual email
                     fail_silently=False,
                 )
                 messages.success(request, 'Your message has been sent successfully! We\'ll get back to you within 24 hours.')
-                # Create a new empty form after successful submission
-                form = ContactForm()
+                form = ContactForm()  # Reset form after successful submission
             except Exception as e:
                 messages.error(request, 'Sorry, there was an error sending your message. Please try again or contact us directly via WhatsApp.')
                 print(f"Email error: {e}")  # For debugging
@@ -98,29 +108,44 @@ def apply(request):
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            application = form.save()
-            # Redirect to payment with the application ID
-            return redirect('core:payment_with_app', application_id=application.id)
+            # Instead of saving to database, store in session
+            application_data = {
+                'first_name': form.cleaned_data['first_name'],
+                'last_name': form.cleaned_data['last_name'],
+                'email': form.cleaned_data['email'],
+                'phone': form.cleaned_data['phone'],
+                'date_of_birth': form.cleaned_data['date_of_birth'].strftime('%Y-%m-%d'),
+                'country': form.cleaned_data['country'],
+                'city': form.cleaned_data['city'],
+                'education_level': form.cleaned_data['education_level'],
+                'current_occupation': form.cleaned_data['current_occupation'],
+                'annual_income': form.cleaned_data['annual_income'],
+                'trading_experience': form.cleaned_data['trading_experience'],
+                'previous_trading_education': form.cleaned_data['previous_trading_education'],
+                'trading_goals': form.cleaned_data['trading_goals'],
+                'desired_course': form.cleaned_data['desired_course'],
+                'study_time_per_week': form.cleaned_data['study_time_per_week'],
+                'start_date_preference': form.cleaned_data['start_date_preference'].strftime('%Y-%m-%d'),
+                'motivation': form.cleaned_data['motivation'],
+                'financial_goals': form.cleaned_data['financial_goals'],
+                'risk_tolerance': form.cleaned_data['risk_tolerance'],
+                'how_did_you_hear': form.cleaned_data['how_did_you_hear'],
+                'additional_comments': form.cleaned_data['additional_comments'],
+                # Store form fields in session
+            }
+            request.session['application_data'] = application_data
             
-            # Send confirmation email to applicant (this code won't execute due to return above)
-            try:
-                send_confirmation_email(application)
-                send_admin_notification_email(application)
-                
-                messages.success(
-                    request, 
-                    f'Thank you {application.first_name}! Your application has been submitted successfully. '
-                    f'You will receive a confirmation email shortly. We will review your application and get back to you within 2-3 business days.'
-                )
-                return redirect('core:apply')
-            except Exception as e:
-                messages.warning(
-                    request,
-                    'Your application was submitted successfully, but there was an issue sending the confirmation email. '
-                    'We will still process your application and contact you soon.'
-                )
-                print(f"Email error: {e}")
-                return redirect('core:apply')
+            # Calculate course price
+            course_prices = {
+                'basic': 1997,
+                'premium': 2997,
+                'vip': 4997
+            }
+            course_price = course_prices.get(form.cleaned_data['desired_course'], 2000)
+            request.session['course_price'] = course_price
+            
+            # Redirect to payment page
+            return redirect('core:payment')
         else:
             messages.error(request, 'Please correct the errors below and try again.')
     else:
@@ -295,4 +320,84 @@ def verify_payment(request):
             'message': f'Error verifying payment: {str(e)}'
         })
 
-# Remove the duplicate payment_view function that was at the bottom
+@csrf_exempt
+@require_http_methods(["POST"])
+def payment_callback(request):
+    """Handle client-side payment callback"""
+    data = json.loads(request.body)
+    reference = data.get('reference')
+    
+    # Get application data from session
+    application_data = request.session.get('application_data', {})
+    
+    if application_data:
+        try:
+            from datetime import datetime
+            
+            application = Application(
+                first_name=application_data['first_name'],
+                last_name=application_data['last_name'],
+                email=application_data['email'],
+                phone=application_data['phone'],
+                date_of_birth=datetime.strptime(application_data['date_of_birth'], '%Y-%m-%d').date(),
+                country=application_data['country'],
+                city=application_data['city'],
+                education_level=application_data['education_level'],
+                current_occupation=application_data['current_occupation'],
+                annual_income=application_data['annual_income'],
+                trading_experience=application_data['trading_experience'],
+                previous_trading_education=application_data['previous_trading_education'],
+                trading_goals=application_data['trading_goals'],
+                desired_course=application_data['desired_course'],
+                study_time_per_week=application_data['study_time_per_week'],
+                start_date_preference=datetime.strptime(application_data['start_date_preference'], '%Y-%m-%d').date(),
+                motivation=application_data['motivation'],
+                financial_goals=application_data['financial_goals'],
+                risk_tolerance=application_data['risk_tolerance'],
+                how_did_you_hear=application_data['how_did_you_hear'],
+                additional_comments=application_data['additional_comments'],
+                # Payment info
+                status='enrolled',  # Set status to enrolled immediately
+                payment_status='paid',
+                payment_reference=reference,
+                payment_date=timezone.now()
+            )
+            application.save()
+            
+            # Add this: Set a payment success flag in the session
+            request.session['payment_completed'] = True
+            request.session['payment_reference'] = reference
+            
+            # Clear application data
+            if 'application_data' in request.session:
+                del request.session['application_data']
+            if 'course_price' in request.session:
+                del request.session['course_price']
+                
+            return JsonResponse({'status': 'success'})
+            
+        except Exception as e:
+            print(f"Error saving application: {str(e)}")
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'No application data found'}, status=400)
+    
+    
+    
+    
+def payment_success(request):
+    """Show payment success page only if payment was completed"""
+    
+    # Check if payment has been completed
+    if not request.session.get('payment_completed', False):
+        messages.error(request, "Please complete your payment before accessing this page.")
+        return redirect('core:payment')  # Redirect to the payment page
+    
+    context = {
+        'payment_reference': request.session.get('payment_reference', '')
+    }
+    
+
+    request.session['payment_completed'] = False
+    
+    return render(request, 'core/payment_success.html', context)

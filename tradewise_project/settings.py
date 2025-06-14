@@ -123,20 +123,19 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Add these email settings at the end of your settings.py file
 
-# Email settings (for development - prints to console)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'noreply@tradewise.com'
 
 # For production, you would use something like:
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-app-password'
-# DEFAULT_FROM_EMAIL = 'TradeWise Academy <noreply@tradewise.com>'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'michaelachel43@gmail.com'
+EMAIL_HOST_PASSWORD = 'Aithusa@1'
+DEFAULT_FROM_EMAIL = 'Themosempire Fx <noreply@themosempire.com>'
 
 
 
-PAYSTACK_PUBLIC_KEY = 'pk_test_2fceea62c8e3a511cf4ab1ac87f2ac7df36f7711'
-PAYSTACK_SECRET_KEY = 'sk_test_0a3e56d86b1a5b21e878581e0ac752e690a09f0e'  # Replace with your actual secret key
+
+JAZZMIN_SETTINGS = {
+    "list_display_links_details": True,  # This could cause the issue with certain configurations
+}

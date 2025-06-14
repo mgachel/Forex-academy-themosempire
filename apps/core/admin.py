@@ -10,8 +10,8 @@ class ApplicationAdmin(admin.ModelAdmin):
         'full_name', 
         'email', 
         'desired_course', 
-        'colored_status', 
-        'course_price_display',
+        'status_display',
+        'payment_status_display',
         'applied_at',
         'country'
     ]
@@ -19,7 +19,6 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_filter = [
         'status',
         'desired_course',
-        'payment_plan',
         'trading_experience',
         'education_level',
         'country',
@@ -52,7 +51,7 @@ class ApplicationAdmin(admin.ModelAdmin):
                 ('country', 'city'),
             )
         }),
-        ('Background', {
+        ('Background Information', {
             'fields': (
                 'education_level',
                 'current_occupation',
@@ -66,15 +65,9 @@ class ApplicationAdmin(admin.ModelAdmin):
                 'trading_goals',
             )
         }),
-        ('Course & Payment', {
+        ('Course Selection', {
             'fields': (
                 'desired_course',
-                'payment_plan',
-                'course_price_display',
-            )
-        }),
-        ('Commitment', {
-            'fields': (
                 'study_time_per_week',
                 'start_date_preference',
             )
@@ -86,7 +79,7 @@ class ApplicationAdmin(admin.ModelAdmin):
                 'risk_tolerance',
             )
         }),
-        ('Additional Info', {
+        ('Additional Information', {
             'fields': (
                 'how_did_you_hear',
                 'additional_comments',
@@ -95,31 +88,45 @@ class ApplicationAdmin(admin.ModelAdmin):
         ('Application Status', {
             'fields': (
                 'status',
-                'applied_at',
                 'reviewed_at',
                 'reviewed_by',
                 'admin_notes',
             )
         }),
+        ('Payment Information', {
+            'fields': (
+                'payment_status',
+                'payment_reference',
+                'payment_date'
+            )
+        })
     )
     
     actions = ['approve_applications', 'reject_applications', 'mark_under_review']
     
-    def colored_status(self, obj):
+    def status_display(self, obj):
         colors = {
-            'pending': '#ffc107',
-            'under_review': '#17a2b8',
-            'approved': '#28a745',
-            'rejected': '#dc3545',
-            'enrolled': '#6f42c1',
+            'pending': 'warning',
+            'under_review': 'info',
+            'approved': 'success',
+            'enrolled': 'primary',
+            'rejected': 'danger'
         }
-        color = colors.get(obj.status, '#6c757d')
-        return format_html(
-            '<span style="color: {}; font-weight: bold;">{}</span>',
-            color,
-            obj.get_status_display()
-        )
-    colored_status.short_description = 'Status'
+        color = colors.get(obj.status, 'secondary')
+        return format_html('<span class="badge bg-{}">{}</span>', 
+                           color, obj.get_status_display())
+    status_display.short_description = 'Status'
+    
+    def payment_status_display(self, obj):
+        colors = {
+            'pending': 'warning',
+            'paid': 'success',
+            'failed': 'danger'
+        }
+        color = colors.get(obj.payment_status, 'secondary')
+        return format_html('<span class="badge bg-{}">{}</span>', 
+                           color, obj.get_payment_status_display())
+    payment_status_display.short_description = 'Payment Status'
     
     def course_price_display(self, obj):
         price = obj.get_course_price()

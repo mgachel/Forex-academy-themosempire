@@ -8,8 +8,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('apply/', views.apply, name='apply'),
-     path('payment/', views.payment_view, name='payment'),  # Simple payment
-    path('payment/<int:application_id>/', views.payment_view, name='payment_with_app'),  # Payment with application
+    path('payment/', views.payment_view, name='payment'),
+    path('payment-callback/', views.payment_callback, name='payment_callback'),
     path('payment-success/', views.payment_success, name='payment_success'),
-    path('verify-payment/', views.verify_payment, name='verify_payment'),
 ]

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Payment - TradeWise Academy</title>
+    <title>Complete Payment - Themosempire Fx</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -95,7 +95,7 @@
                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
                 </svg>
             </div>
-            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">TradeWise Academy</h2>
+            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
         <div class="hidden md:flex items-center gap-4">
             <div class="flex items-center gap-2 text-[#0c77f2]">
@@ -108,19 +108,19 @@
     <!-- Hero Section -->
     <div class="@container mb-8">
         <div class="@[480px]:p-4">
-            <div class="flex min-h-[200px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
-                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgoPMQAi9_v2P7F_bqxdM6Md2hYfDtpRee_VYJagK6rsnJvQdcKG-hElx9b6CSgrVkU1YDsF0AHd-jCHEqYESTyt08-RqbgYh7O_JeCuQGttEOYVtbhMBF1QQaRz-o-Zdn0n5i4cN89kkF0Q');">
+            <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
                 <div class="flex flex-col gap-2 text-center">
                     <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
                         Complete Your Payment
                     </h1>
                     <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                        Secure your spot in the TradeWise Academy program with our safe, encrypted payment system
+                        Secure your spot in the Themosempire Fx program with our safe, encrypted payment system
                     </h2>
                 </div>
                 <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 mt-4">
                     <span class="ghana-flag w-6 h-1 rounded-full"></span>
-                    <span class="text-white text-sm font-bold">🇬🇭 Located in Ghana</span>
+                    <span class="text-white text-sm font-bold"> Located in Ghana</span>
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@
                                     <i class="fas fa-book mr-2"></i>
                                     Course Type
                                 </span>
-                                <span class="text-[#0d141c] font-semibold">{% if application %}{{ application.get_desired_course_display }}{% else %}Advanced Trading{% endif %}</span>
+                                <span class="text-[#0d141c] font-semibold">{% if application %}{{ application.get_desired_course_display }}{% else %}Complete 2 year course{% endif %}</span>
                             </div>
                             <div class="flex justify-between py-3 border-b border-[#e7edf4]">
                                 <span class="text-[#49709c] flex items-center">
@@ -168,7 +168,7 @@
                             </div>
                             <div class="flex justify-between py-4">
                                 <span class="text-[#49709c] text-lg font-medium">Total Amount</span>
-                                <span class="text-[#0c77f2] font-bold text-3xl">GHS {{ course_price|floatformat:0 }}</span>
+                                <span class="text-[#0c77f2] font-bold text-3xl">GHS 20,000</span>
                             </div>
                         </div>
                     </div>
@@ -282,18 +282,17 @@
                                 </label>
                                 <div class="relative">
                                     <input
-                                        type="number"
+                                        type="text"
                                         id="amount"
-                                        value="{{ course_price|floatformat:0 }}"
-                                        min="1"
-                                        step="0.01"
-                                        required
-                                        class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] font-bold text-xl"
+                                        value="GHS 20,000"
+                                        readonly
+                                        class="form-input w-full px-4 py-3 bg-slate-50 border border-[#cedae8] rounded-lg text-[#0d141c] font-bold text-xl cursor-not-allowed"
                                     />
                                     <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#0c77f2]">
-                                        <i class="fas fa-coins"></i>
+                                        <i class="fas fa-lock"></i>
                                     </div>
                                 </div>
+                                <p class="mt-2 text-xs text-[#49709c]">Fixed price based on course selection</p>
                             </div>
 
                             <!-- Payment Button -->
@@ -305,7 +304,7 @@
                             >
                                 <span id="btn-text" class="flex items-center justify-center">
                                     <i class="fas fa-lock mr-3"></i>
-                                    Pay GHS {{ course_price|floatformat:0 }} Securely
+                                    Pay GHS 20,000 Securely
                                 </span>
                                 <span id="btn-loading" class="hidden flex items-center justify-center">
                                     <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -433,7 +432,7 @@
                         <span class="text-sm">256-bit Encryption</span>
                     </div>
                 </div>
-                <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 TradeWise Academy. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+                <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
             </footer>
         </div>
     </footer>
@@ -468,13 +467,14 @@
             setTimeout(animateOnScroll, 100);
         });
 
+        // Update the pay function to use fixed amount
         function pay() {
             const email = document.getElementById('email').value;
             const name = document.getElementById('fullName').value;
             const phone = document.getElementById('phone').value;
-            const amount = document.getElementById('amount').value;
+            const amount = 20000; // Updated amount to 20000 GHS
 
-            if (!email || !name || !amount) {
+            if (!email || !name) {
                 alert('Please fill in all required fields');
                 return;
             }
@@ -489,9 +489,9 @@
             payBtn.disabled = true;
 
             const handler = PaystackPop.setup({
-                key: 'pk_live_9f1ad537884643df3a68b43c58e9c1bd9d5f2c84', // Replace with your actual key
+                key: 'pk_test_fcf137aa494b1ea803945470038b5838d3a4adb5',
                 email: email,
-                amount: amount * 100, // Convert to pesewas
+                amount: amount * 100, // Convert to pesewas (now 2,000,000 pesewas = GHS 20,000)
                 currency: 'GHS',
                 ref: 'TW_' + Math.floor((Math.random() * 1000000000) + 1),
                 metadata: {
@@ -499,8 +499,31 @@
                     phone: phone
                 },
                 callback: function(response) {
-                    alert('Payment successful! Reference: ' + response.reference);
-                    window.location.href = '/payment-success/';
+                    // Make an AJAX call to save application data
+                    fetch('/payment-callback/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({
+                            reference: response.reference
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            window.location.href = '/payment-success/';
+                        } else {
+                            alert('Payment was successful, but there was an issue saving your information. Please contact support.');
+                            // Don't redirect to success page if there was an error
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Payment was successful, but there was an issue with your registration. Please contact support.');
+                       
+                    });
                 },
                 onClose: function() {
                     // Reset button state
@@ -514,14 +537,21 @@
             handler.openIframe();
         }
 
-        // Update button text when amount changes
-        document.getElementById('amount').addEventListener('input', function() {
-            const amount = this.value;
-            const btnText = document.getElementById('btn-text');
-            if (amount && amount > 0) {
-                btnText.innerHTML = `<i class="fas fa-lock mr-3"></i>Pay GHS ${parseFloat(amount).toLocaleString()} Securely`;
+        // Helper function to get CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
             }
-        });
+            return cookieValue;
+        }
 
         // Form input focus effects
         document.querySelectorAll('.form-input').forEach(input => {
