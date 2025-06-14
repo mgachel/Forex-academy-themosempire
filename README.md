@@ -43,13 +43,3 @@ The project is organized into several directories and files:
    python manage.py runserver
    ```
 
-## Features
-- **AI-Powered Learning**: Personalized trading strategies and real-time market insights.
-- **Quantum Analytics**: Advanced market pattern analysis using quantum computing principles.
-- **Global Community**: Connect with traders worldwide for collaboration and mentorship.
-
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue for any suggestions or improvements.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
