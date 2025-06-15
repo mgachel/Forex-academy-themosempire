@@ -2,4 +2,4 @@
 nixPkgs = ['postgresql', 'python39', 'gcc']
 
 [start]
-cmd = "gunicorn tradewise.wsgi --log-file -"
+cmd = "gunicorn tradewise_project.wsgi --log-file -"
