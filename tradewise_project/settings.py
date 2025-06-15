@@ -28,6 +28,10 @@ DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['web-production-6d28a.up.railway.app', 'localhost', '127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-6d28a.up.railway.app',
+]
+
 # Application definition
 
 INSTALLED_APPS = [

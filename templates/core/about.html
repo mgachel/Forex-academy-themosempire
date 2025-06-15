@@ -3,21 +3,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>About Us - Themosempire Fx</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
+        
+        /* Base styles */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
         .text-gradient {
             background: linear-gradient(135deg, #0c77f2 0%, #0c77f2 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
         }
+        
         .ghana-flag {
             background: linear-gradient(to right, #ce1126 33.33%, #fcd116 33.33% 66.66%, #006b3f 66.66%);
             height: 4px;
         }
+        
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -28,301 +40,169 @@
             z-index: 1000;
             transition: width 0.3s ease;
         }
+        
+        /* Animations */
         .animate-slide-up, .animate-slide-left, .animate-slide-right {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        /* Mobile menu styles */
+        /* Mobile menu */
         #mobileMenu {
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
             backdrop-filter: blur(8px);
-        }
-
-        #mobileMenu.hidden {
-            display: none;
+            transform: translateY(-10px);
             opacity: 0;
+            display: none;
         }
 
-        #mobileMenu:not(.hidden) {
+        #mobileMenu.active {
             display: block;
             opacity: 1;
+            transform: translateY(0);
         }
-
-        /* Ensure header stays above mobile menu */
+        
+        /* Header positioning */
         header {
             position: relative;
             z-index: 51;
             background-color: white;
         }
         
-        /* Mobile optimizations */
+        /* Better mobile touch targets */
         @media (max-width: 640px) {
-            .ghana-flag {
-                height: 3px;
-            }
-            
-            /* Apply touch-friendly styles to all interactive elements */
-            a, button {
-                touch-action: manipulation;
-            }
-            
-            /* Better tap targets */
-            a, button {
+            /* Larger touch targets */
+            nav a, button, .dropdown-toggle, input[type="submit"] {
                 min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem 0.75rem;
             }
             
-            .animate-slide-up, .animate-slide-left, .animate-slide-right {
-                transition-duration: 0.5s;
-            }
-        }
-        
-        /* Add smooth scroll snap for testimonials on mobile */
-        .snap-x {
-            scroll-snap-type: x mandatory;
-        }
-        
-        .snap-center {
-            scroll-snap-align: center;
-        }
-        
-        /* Enhanced touch feedback */
-        @media (hover: none) {
+            /* Active state for touch feedback */
             a:active, button:active {
-                transform: scale(0.98);
-            }
-        }
-        
-        /* Optimize hero image loading for mobile */
-        @media (max-width: 640px) {
-            .hero-bg {
-                background-position: center 30% !important;
-            }
-        }
-
-        /* Improve touch targets on mobile */
-        @media (max-width: 768px) {
-            #mobileMenu a {
-                display: block;
-                width: 100%;
-                touch-action: manipulation;
+                opacity: 0.7;
             }
             
-            #mobileMenuButton {
-                padding: 8px;
-                margin: -8px;
-                touch-action: manipulation;
-            }
-        }
-        
-        /* Additional responsive improvements */
-        
-        /* Better padding for small screens */
-        @media (max-width: 480px) {
-            .px-4 {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
-            h1 {
-                font-size: 1.75rem !important;
+            /* Ensure text is readable */
+            .text-xs {
+                font-size: 0.75rem !important;
                 line-height: 1.2 !important;
             }
             
-            h2, h3 {
-                font-size: 1.25rem !important;
-            }
-            
-            /* Improve text readability */
             .text-sm {
                 font-size: 0.875rem !important;
+                line-height: 1.4 !important;
             }
             
-            /* Better spacing for mobile layouts */
+            /* Responsive spacing */
+            .px-4 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            /* Better spacing for stacked elements */
             .gap-6 {
-                gap: 1rem;
-            }
-            
-            .gap-4 {
-                gap: 0.75rem;
-            }
-            
-            .py-6 {
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
+                gap: 1rem !important;
             }
         }
         
-        /* Improve testimonial slider on very small devices */
-        @media (max-width: 380px) {
-            .w-\[85vw\] {
-                width: 80vw;
+        /* Testimonial carousel */
+        .testimony-container {
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .testimony-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .testimony-card {
+            scroll-snap-align: center;
+        }
+        
+        /* Program cards */ 
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Stats layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
         
-        /* Better touch area for links */
-        a, button {
-            position: relative;
-            padding: 0.25rem;
-            margin: -0.25rem;
+        /* Better mobile footer */
+        @media (max-width: 768px) {
+            footer .footer-grid > div {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
         }
         
-        /* Ensure images scale properly */
-        img {
+        /* Fix overflow issues */
+        img, video, svg {
             max-width: 100%;
             height: auto;
         }
         
-        /* Fix issues with overflow on mobile */
-        .overflow-x-auto {
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        /* Fix text wrapping */
+        p, h1, h2, h3, h4, li, blockquote {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
         }
         
-        .overflow-x-auto::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome/Safari */
+        /* Ensure content is always visible */
+        .content-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
         
-        /* Ensure stats section looks good on all devices */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.75rem;
-        }
-        
-        /* Fix hero section height on very small screens */
-        @media (max-width: 360px) {
-            .min-h-\[240px\] {
-                min-height: 200px;
+        @media (min-width: 640px) {
+            .content-container {
+                padding: 1.5rem;
             }
         }
         
-        /* Improve mobile footer experience */
-        @media (max-width: 768px) {
-            footer .grid-cols-1 > div {
-                text-align: center;
-                margin-bottom: 1.5rem;
-            }
-            
-            footer .justify-center {
-                justify-content: center;
+        @media (min-width: 1024px) {
+            .content-container {
+                padding: 2rem;
             }
         }
         
-        /* Additional critical mobile fixes */
-        @media (max-width: 480px) {
-            /* Adjust text sizing for better readability */
-            body {
-                font-size: 14px;
-            }
-            
-            /* Ensure all text is visible on mobile */
-            .text-xs {
-                font-size: 12px !important;
-            }
-            
-            .text-sm {
-                font-size: 14px !important;
-            }
-            
-            .text-base {
-                font-size: 16px !important;
-            }
-            
-            .text-lg, .text-xl {
-                font-size: 18px !important;
-            }
-            
-            /* Fix heading sizes */
-            h1, .text-2xl, .text-[32px], .text-4xl, .text-5xl {
-                font-size: 24px !important;
-                line-height: 1.3 !important;
-            }
-            
-            h2, h3, .text-xl, .text-2xl {
-                font-size: 20px !important;
-                line-height: 1.3 !important;
-            }
-            
-            /* Improve card layouts */
-            .grid-cols-2 {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .stats-grid, .grid-cols-2 {
-                gap: 12px !important;
-            }
-            
-            /* Better padding for mobile */
-            .p-4, .p-6, .px-4, .py-4, .py-6 {
-                padding: 12px !important;
-            }
-            
-            .gap-3, .gap-4, .gap-6 {
-                gap: 12px !important;
-            }
-            
-            /* Ensure mobile taps work well */
-            a, button {
-                min-height: 36px;
-                display: inline-flex;
-                align-items: center;
-            }
-        }
-        
-        /* Fix section padding */
-        .px-4.sm\:px-10.md\:px-20.lg\:px-40 {
-            padding-left: 12px !important;
-            padding-right: 12px !important;
-        }
-        
-        /* Improve mobile content visibility */
-        @media (max-width: 640px) {
-            /* Ensure text doesn't overflow */
-            p, li, blockquote {
-                max-width: 100%;
-                overflow-wrap: break-word;
-                word-wrap: break-word;
-            }
-            
-            /* Fix testimonial display */
-            .w-\[85vw\] {
-                width: 85vw !important;
-                min-width: 250px !important;
-            }
-            
-            /* Make stats cards more compact */
-            .stats-grid > div, .grid-cols-2 > div {
-                padding: 12px !important;
-            }
-            
-            /* Fix footer visibility */
-            footer .grid-cols-1 {
-                text-align: center !important;
-                gap: 24px !important;
-            }
-        }
-        
-        /* Ensure icons and emoji show properly */
-        .text-xl, .text-2xl, .text-3xl {
-            line-height: 1 !important;
-        }
-        
-        /* Fix mobile icon alignment */
-        .flex.items-center.gap-4 {
-            align-items: flex-start !important;
+        /* Fix hero image on mobile */
+        .hero-bg {
+            background-position: center !important;
+            background-size: cover !important;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
+<body class="bg-slate-50 text-[#0d141c]">
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Ghana flag stripe -->
+    <div class="ghana-flag w-full"></div>
 
     <!-- Navigation -->
     <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-4 sm:px-10 py-3">
         <div class="flex items-center gap-2 sm:gap-4 text-[#0d141c]">
-            <div class="size-4">
+            <div class="w-8 h-8">
                 <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
                 </svg>
@@ -330,19 +210,22 @@
             <h2 class="text-[#0d141c] text-base sm:text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
         
-        <!-- Mobile menu button (shows on small screens) -->
-        <button id="mobileMenuButton" class="block md:hidden text-[#0d141c]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+        <!-- Mobile menu button -->
+        <button id="mobileMenuButton" class="block md:hidden text-[#0d141c] p-2" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" id="menuIcon">
                 <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" class="hidden" id="closeIcon">
+                <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
             </svg>
         </button>
         
-        <!-- Mobile menu (hidden by default) -->
-        <div id="mobileMenu" class="hidden fixed top-[57px] left-0 right-0 bg-white shadow-lg z-50 md:hidden min-h-screen">
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="fixed top-[57px] left-0 right-0 bg-white shadow-lg z-50 md:hidden min-h-screen">
             <div class="flex flex-col p-6 space-y-4">
                 <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:home' %}">Home</a>
                 <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:contact' %}">Contact Us</a>
-                <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:about' %}">About Us</a>
+                <a class="py-3 text-[#0c77f2] text-base font-medium" href="{% url 'core:about' %}">About Us</a>
                 <div class="pt-4">
                     <a href="{% url 'core:apply' %}" class="w-full flex justify-center items-center rounded-lg py-3 px-4 bg-[#0c77f2] text-white text-base font-bold hover:bg-[#0a65d0] transition-colors">
                         Get Started
@@ -351,12 +234,12 @@
             </div>
         </div>
         
-        <!-- Desktop navigation (hidden on mobile) -->
+        <!-- Desktop navigation -->
         <div class="hidden md:flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Home</a>
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
-                <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">About Us</a>
+                <a class="text-[#0c77f2] text-sm font-medium leading-normal" href="{% url 'core:about' %}">About Us</a>
             </div>
             <div class="flex gap-2">
                 <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]">
@@ -367,38 +250,39 @@
     </header>
 
     <!-- Main Content -->
-    <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
-        <div class="flex flex-col max-w-[960px] flex-1">
-
-            <!-- Hero Section -->
-            <div class="@container">
-                <div class="@[480px]:p-4">
-                    <div class="flex min-h-[240px] sm:min-h-[480px] flex-col gap-4 sm:gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+    <main class="content-container">
+        <!-- Hero Section -->
+        <section class="mb-8 sm:mb-12">
+            <div class="w-full">
+                <div class="sm:p-4">
+                    <div class="flex min-h-[240px] sm:min-h-[480px] flex-col gap-4 sm:gap-6 bg-cover bg-center bg-no-repeat items-center justify-center p-4 sm:rounded-lg hero-bg" 
                          style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
                         <div class="flex flex-col gap-2 text-center">
-                            <h1 class="text-white text-2xl sm:text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                            <h1 class="text-white text-2xl sm:text-4xl font-black leading-tight tracking-[-0.033em]">
                                 About Us
                             </h1>
-                            <h2 class="text-white text-xs sm:text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal px-2">
+                            <p class="text-white text-sm sm:text-base font-normal leading-normal px-2">
                                 Empowering Ghanaian traders through expert education, proven strategies, and comprehensive financial literacy
-                            </h2>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Who We Are Section -->
-            <div class="flex flex-col gap-6 sm:gap-10 px-4 py-6 sm:py-10 @container animate-slide-up">
-                <div class="flex flex-col gap-3 sm:gap-4">
-                    <h1 class="text-[#0d141c] tracking-light text-2xl sm:text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+        <!-- Who We Are Section -->
+        <section class="mb-10 sm:mb-16 animate-slide-up">
+            <div class="flex flex-col gap-6">
+                <div>
+                    <h2 class="text-[#0d141c] text-2xl sm:text-3xl font-bold mb-4">
                         Who We Are
-                    </h1>
-                    <p class="text-[#0d141c] text-sm sm:text-base font-normal leading-normal max-w-[720px]">
+                    </h2>
+                    <p class="text-[#0d141c] text-sm sm:text-base font-normal">
                         Located in the heart of Ghana 
                     </p>
                 </div>
-                <div class="space-y-4 sm:space-y-6 text-[#49709c] text-base sm:text-lg leading-relaxed">
-                    <p class="text-lg sm:text-xl">
+                <div class="space-y-4 text-[#49709c] text-base leading-relaxed">
+                    <p>
                         Welcome to <span class="text-[#0c77f2] font-bold">Themosempire</span>, a transformative learning hub designed to equip you with 
                         <span class="text-[#0c77f2] font-semibold">essential financial literacy skills and deep insights into the forex trading world</span>. 
                         Whether you're a beginner trying to understand money or a budding trader aiming to earn in the forex market, we provide step-by-step guidance, 
@@ -408,7 +292,7 @@
                     <p>
                         We are located in 
                         <span class="text-[#0c77f2] font-semibold">Ghana</span> and designed for mastering financial literacy and forex trading.
-                        Founded by <span class="text-[#0c77f2] font-bold text-xl">Aloowine A. Amos</span> — an experienced educator, swing trader, 
+                        Founded by <span class="text-[#0c77f2] font-bold">Aloowine A. Amos</span> — an experienced educator, swing trader, 
                         and intraday trader with over <span class="text-[#0c77f2] font-semibold">7 years</span> in the trading space — this academy is committed to helping individuals take 
                         full control of their finances and unlock earning potential through the foreign exchange market.
                     </p>
@@ -425,232 +309,236 @@
                     </p>
                 </div>
             </div>
+        </section>
 
-            <!-- Mission Statement -->
-            <div class="flex flex-col gap-3 sm:gap-4 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center animate-slide-up mb-6 sm:mb-10">
-                <div class="flex justify-center pb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#0c77f2" viewBox="0 0 256 256">
+        <!-- Mission Statement -->
+        <section class="mb-10 sm:mb-16 animate-slide-up">
+            <div class="rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center">
+                <div class="flex justify-center pb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#0c77f2" viewBox="0 0 256 256">
                         <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-68a28,28,0,0,1-28,28H116a8,8,0,0,1,0-16h24a12,12,0,0,0,0-24H116a28,28,0,0,1,0-56h24a8,8,0,0,1,0,16H116a12,12,0,0,0,0,24h24A28,28,0,0,1,168,148Z"/>
                     </svg>
                 </div>
-                <h2 class="text-[#0d141c] text-xl sm:text-2xl font-bold">Our Mission</h2>
-                <p class="text-[#0c77f2] text-lg sm:text-xl font-bold leading-relaxed italic">
+                <h2 class="text-[#0d141c] text-xl sm:text-2xl font-bold mb-3">Our Mission</h2>
+                <p class="text-[#0c77f2] text-lg sm:text-xl font-bold leading-relaxed italic mb-3">
                     "Empower individuals to make smart money decisions and trade confidently."
                 </p>
-                <p class="text-[#49709c] text-sm sm:text-base">- Aloowine A. Amos, Founder</p>
+                <p class="text-[#49709c] text-sm">- Aloowine A. Amos, Founder</p>
+            </div>
+        </section>
+
+        <!-- Our Programs Section -->
+        <section class="mb-10 sm:mb-16 animate-slide-up">
+            <div class="mb-6">
+                <h2 class="text-[#0d141c] text-2xl sm:text-3xl font-bold mb-3">
+                    Our Programs
+                </h2>
+                <p class="text-[#0d141c] text-sm sm:text-base">
+                    2 Year Comprehensive Course
+                </p>
+            </div>
+            
+            <!-- Program grid -->
+            <div class="program-grid mb-8">
+                <!-- Financial Literacy 101 -->
+                <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                            <span class="text-xl">💰</span>
+                        </div>
+                        <div>
+                            <h3 class="text-[#0d141c] text-lg sm:text-xl font-bold">Financial Literacy 101</h3>
+                            <p class="text-[#0c77f2] text-sm font-semibold">(Beginner)</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-[#49709c]">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Budgeting</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Saving strategies</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Debt management</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Wealth planning</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Introduction to Forex -->
+                <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                            <span class="text-xl">📈</span>
+                        </div>
+                        <div>
+                            <h3 class="text-[#0d141c] text-lg sm:text-xl font-bold">Introduction to Forex</h3>
+                            <p class="text-[#0c77f2] text-sm font-semibold">(Beginner-Intermediate)</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-[#49709c]">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Forex market basics</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Currency pairs</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Brokers selection</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>How trading works</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Technical & Fundamental Analysis -->
+                <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                            <span class="text-xl">📊</span>
+                        </div>
+                        <div>
+                            <h3 class="text-[#0d141c] text-lg sm:text-xl font-bold">Technical & Fundamental Analysis</h3>
+                            <p class="text-[#0c77f2] text-sm font-semibold">(Intermediate)</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-[#49709c]">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Chart reading</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Technical indicators</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Market news analysis</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Economic calendars</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Trading Psychology & Risk Management -->
+                <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                            <span class="text-xl">🧠</span>
+                        </div>
+                        <div>
+                            <h3 class="text-[#0d141c] text-lg sm:text-xl font-bold">Trading Psychology & Risk Management</h3>
+                            <p class="text-[#0c77f2] text-sm font-semibold">(Intermediate-Advanced)</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-[#49709c]">
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Controlling emotions</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Managing losses</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Smart decision-making</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-green-500 mt-0.5">✓</span>
+                            <span>Risk assessment</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Our Programs Section -->
-            <div class="flex flex-col gap-10 px-4 py-10 @container animate-slide-up">
-                <div class="flex flex-col gap-4">
-                    <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
-                        Our Programs
-                    </h1>
-                    <p class="text-[#0d141c] text-sm sm:text-base font-normal leading-normal max-w-[720px]">
-                        2 Year Comprehensive Course
-                    </p>
+            <!-- Live Trading Program -->
+            <div class="flex flex-col gap-3 rounded-lg border-2 border-[#0c77f2] bg-slate-50 p-5 sm:p-6 text-center">
+                <div class="flex justify-center">
+                    <div class="w-14 h-14 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                        <span class="text-2xl">🎯</span>
+                    </div>
                 </div>
+                <h3 class="text-[#0d141c] text-xl font-bold">Live Trading & Mentorship Program</h3>
+                <p class="text-[#0c77f2] text-sm font-semibold">(Advanced)</p>
+                <p class="text-[#49709c] text-sm mb-4">Trade with experts, receive feedback, and grow your strategy</p>
                 
-                <!-- Make program cards stack vertically on mobile -->
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-                    <!-- Financial Literacy 101 - keep content but adjust padding -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-xl">💰</span>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold">Financial Literacy 101</h3>
-                                <p class="text-[#0c77f2] text-sm font-semibold">(Beginner)</p>
-                            </div>
-                        </div>
-                        <ul class="space-y-3 text-[#49709c]">
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Budgeting</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Saving strategies</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Debt management</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Wealth planning</span>
-                            </li>
-                        </ul>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="text-center">
+                        <span class="text-green-500 text-lg">✓</span>
+                        <p class="text-[#49709c] text-sm mt-1">Live sessions</p>
                     </div>
-
-                    <!-- Introduction to Forex -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-xl">📈</span>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold">Introduction to Forex</h3>
-                                <p class="text-[#0c77f2] text-sm font-semibold">(Beginner-Intermediate)</p>
-                            </div>
-                        </div>
-                        <ul class="space-y-3 text-[#49709c]">
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Forex market basics</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Currency pairs</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Brokers selection</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>How trading works</span>
-                            </li>
-                        </ul>
+                    <div class="text-center">
+                        <span class="text-green-500 text-lg">✓</span>
+                        <p class="text-[#49709c] text-sm mt-1">Expert feedback</p>
                     </div>
-
-                    <!-- Technical & Fundamental Analysis -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-xl">📊</span>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold">Technical & Fundamental Analysis</h3>
-                                <p class="text-[#0c77f2] text-sm font-semibold">(Intermediate)</p>
-                            </div>
-                        </div>
-                        <ul class="space-y-3 text-[#49709c]">
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Chart reading</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Technical indicators</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Market news analysis</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Economic calendars</span>
-                            </li>
-                        </ul>
+                    <div class="text-center">
+                        <span class="text-green-500 text-lg">✓</span>
+                        <p class="text-[#49709c] text-sm mt-1">Strategy development</p>
                     </div>
-
-                    <!-- Trading Psychology & Risk Management -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-xl">🧠</span>
-                            </div>
-                            <div>
-                                <h3 class="text-[#0d141c] text-xl font-bold">Trading Psychology & Risk Management</h3>
-                                <p class="text-[#0c77f2] text-sm font-semibold">(Intermediate-Advanced)</p>
-                            </div>
-                        </div>
-                        <ul class="space-y-3 text-[#49709c]">
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Controlling emotions</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Managing losses</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Smart decision-making</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-green-500">✓</span>
-                                <span>Risk assessment</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Live Trading Program -->
-                <div class="flex flex-col gap-3 rounded-lg border-2 border-[#0c77f2] bg-slate-50 p-4 sm:p-6 text-center mt-4">
-                    <div class="flex justify-center">
-                        <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
-                            <span class="text-xl sm:text-2xl">🎯</span>
-                        </div>
-                    </div>
-                    <h3 class="text-[#0d141c] text-xl sm:text-2xl font-bold">Live Trading & Mentorship Program</h3>
-                    <p class="text-[#0c77f2] text-xs sm:text-sm font-semibold">(Advanced)</p>
-                    <p class="text-[#49709c] text-sm mb-3 sm:mb-4">Trade with experts, receive feedback, and grow your strategy</p>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                        <div class="text-center">
-                            <span class="text-green-500">✓</span>
-                            <p class="text-[#49709c] text-sm mt-1">Live sessions</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-green-500">✓</span>
-                            <p class="text-[#49709c] text-sm mt-1">Expert feedback</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-green-500">✓</span>
-                            <p class="text-[#49709c] text-sm mt-1">Strategy development</p>
-                        </div>
-                        <div class="text-center">
-                            <span class="text-green-500">✓</span>
-                            <p class="text-[#49709c] text-sm mt-1">1-on-1 mentorship</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course Features -->
-                <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 mt-4">
-                    <h4 class="text-[#0d141c] text-xl font-bold text-center mb-4">Each Course Includes:</h4>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="flex items-center gap-3">
-                            <span class="text-green-500 text-xl">✅</span>
-                            <span class="text-[#49709c]">Video lessons</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-green-500 text-xl">✅</span>
-                            <span class="text-[#49709c]">Downloadable PDFs</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-green-500 text-xl">✅</span>
-                            <span class="text-[#49709c]">Practical assignments</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-green-500 text-xl">✅</span>
-                            <span class="text-[#49709c]">Certificate of Completion</span>
-                        </div>
+                    <div class="text-center">
+                        <span class="text-green-500 text-lg">✓</span>
+                        <p class="text-[#49709c] text-sm mt-1">1-on-1 mentorship</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Testimonials Section -->
-            <div class="flex flex-col gap-6 sm:gap-10 px-4 py-6 sm:py-10 @container animate-slide-up">
-                <div class="flex flex-col gap-3 sm:gap-4">
-                    <h1 class="text-[#0d141c] tracking-light text-2xl sm:text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
-                        What Our Students Say
-                    </h1>
+            <!-- Course Features -->
+            <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5 sm:p-6 mt-6">
+                <h4 class="text-[#0d141c] text-lg sm:text-xl font-bold text-center mb-3">Each Course Includes:</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500 text-lg">✅</span>
+                        <span class="text-[#49709c] text-sm">Video lessons</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500 text-lg">✅</span>
+                        <span class="text-[#49709c] text-sm">Downloadable PDFs</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500 text-lg">✅</span>
+                        <span class="text-[#49709c] text-sm">Practical assignments</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500 text-lg">✅</span>
+                        <span class="text-[#49709c] text-sm">Certificate</span>
+                    </div>
                 </div>
-                
-                <!-- Improved mobile scrolling for testimonials -->
-                <div class="flex md:grid md:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto pb-6 md:overflow-visible snap-x snap-mandatory scrollbar-hide" style="-webkit-overflow-scrolling: touch;">
-                    <!-- Testimonial 1 - add snap-center for mobile scrolling -->
-                    <div class="flex-shrink-0 w-[85vw] md:w-auto snap-center flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center">
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="mb-10 sm:mb-16 animate-slide-up">
+            <div class="mb-6">
+                <h2 class="text-[#0d141c] text-2xl sm:text-3xl font-bold mb-3">
+                    What Our Students Say
+                </h2>
+            </div>
+            
+            <div class="relative">
+                <!-- Testimonial slider with touch-friendly scrolling -->
+                <div class="testimony-container flex overflow-x-auto gap-4 pb-6">
+                    <!-- Testimonial 1 -->
+                    <div class="testimony-card flex-shrink-0 w-[280px] sm:w-[300px] flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5 text-center">
                         <div class="flex justify-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-xl sm:text-2xl">👩</span>
+                            <div class="w-14 h-14 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-2xl">👩</span>
                             </div>
                         </div>
-                        <blockquote class="text-[#49709c] italic text-base sm:text-lg mb-2 leading-relaxed">
+                        <blockquote class="text-[#49709c] italic text-base mb-3 leading-relaxed">
                             "This academy changed my view on money and introduced me to a skill that pays for life!"
                         </blockquote>
                         <div class="text-[#0c77f2] font-bold">– Sarah</div>
@@ -658,13 +546,13 @@
                     </div>
 
                     <!-- Testimonial 2 -->
-                    <div class="flex-shrink-0 w-[85vw] md:w-auto snap-center flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center">
+                    <div class="testimony-card flex-shrink-0 w-[280px] sm:w-[300px] flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5 text-center">
                         <div class="flex justify-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-xl sm:text-2xl">👨</span>
+                            <div class="w-14 h-14 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-2xl">👨</span>
                             </div>
                         </div>
-                        <blockquote class="text-[#49709c] italic text-base sm:text-lg mb-2 leading-relaxed">
+                        <blockquote class="text-[#49709c] italic text-base mb-3 leading-relaxed">
                             "I went from knowing nothing about forex to making my first profit in 2 months!"
                         </blockquote>
                         <div class="text-[#0c77f2] font-bold">– Daniel</div>
@@ -672,13 +560,13 @@
                     </div>
 
                     <!-- Testimonial 3 -->
-                    <div class="flex-shrink-0 w-[85vw] md:w-auto snap-center flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center">
+                    <div class="testimony-card flex-shrink-0 w-[280px] sm:w-[300px] flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-5 text-center">
                         <div class="flex justify-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-xl sm:text-2xl">👩‍🎓</span>
+                            <div class="w-14 h-14 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-2xl">👩‍🎓</span>
                             </div>
                         </div>
-                        <blockquote class="text-[#49709c] italic text-base sm:text-lg mb-2 leading-relaxed">
+                        <blockquote class="text-[#49709c] italic text-base mb-3 leading-relaxed">
                             "The financial literacy course helped me budget and save effectively. Highly recommended!"
                         </blockquote>
                         <div class="text-[#0c77f2] font-bold">– Anita</div>
@@ -686,113 +574,109 @@
                     </div>
                 </div>
                 
-                <!-- Clearer scroll indicators -->
-                <div class="flex justify-center gap-3 md:hidden">
+                <!-- Scroll indicators for mobile -->
+                <div class="flex justify-center gap-3 mt-4 sm:hidden">
                     <span class="w-3 h-3 rounded-full bg-[#0c77f2]"></span>
                     <span class="w-3 h-3 rounded-full bg-[#cedae8]"></span>
                     <span class="w-3 h-3 rounded-full bg-[#cedae8]"></span>
                 </div>
             </div>
+        </section>
 
-            <!-- Stats Section -->
-            <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-6 my-8 animate-slide-up">
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">⭐</div>
-                    <div class="text-[#0d141c] font-bold text-xl">7+ Years</div>
+        <!-- Stats Section -->
+        <section class="mb-10 sm:mb-16 animate-slide-up">
+            <div class="stats-grid">
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="text-2xl sm:text-3xl mb-3">⭐</div>
+                    <div class="text-[#0d141c] font-bold text-lg sm:text-xl">7+ Years</div>
                     <div class="text-[#49709c] text-sm">Experience</div>
                 </div>
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">🤝</div>
-                    <div class="text-[#0d141c] font-bold text-xl">Exness</div>
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="text-2xl sm:text-3xl mb-3">🤝</div>
+                    <div class="text-[#0d141c] font-bold text-lg sm:text-xl">Exness</div>
                     <div class="text-[#49709c] text-sm">Partner</div>
                 </div>
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">👥</div>
-                    <div class="text-[#0d141c] font-bold text-xl">500+</div>
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="text-2xl sm:text-3xl mb-3">👥</div>
+                    <div class="text-[#0d141c] font-bold text-lg sm:text-xl">500+</div>
                     <div class="text-[#49709c] text-sm">Students</div>
                 </div>
-                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-6">
-                    <div class="text-3xl mb-4">🛡️</div>
-                    <div class="text-[#0d141c] font-bold text-xl">24/7</div>
+                <div class="text-center rounded-lg border border-[#cedae8] bg-slate-50 p-5">
+                    <div class="text-2xl sm:text-3xl mb-3">🛡️</div>
+                    <div class="text-[#0d141c] font-bold text-lg sm:text-xl">24/7</div>
                     <div class="text-[#49709c] text-sm">Support</div>
                 </div>
             </div>
+        </section>
 
-            <!-- Call to Action -->
-            <div class="@container animate-slide-up">
-                <div class="flex flex-col justify-end gap-4 sm:gap-6 px-4 py-6 sm:py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
-                    <div class="flex flex-col gap-2 text-center">
-                        <h1 class="text-[#0d141c] tracking-light text-2xl sm:text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
-                            Ready to Start Your Trading Journey?
-                        </h1>
-                        <p class="text-[#49709c] text-base sm:text-lg mb-4 sm:mb-6 max-w-[720px] mx-auto">
-                            Join Aloowine A. Amos and the Themosempire Fx community in Ghana. Take control of your financial future with proven strategies and expert mentorship.
-                        </p>
-                    </div>
-                    <div class="flex flex-1 justify-center">
-                        <div class="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center w-full sm:w-auto">
-                            <a href="{% url 'core:apply' %}" class="flex h-12 min-w-[84px] w-full sm:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg px-8 bg-[#0c77f2] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]">
-                                <span class="truncate">Join Academy Now</span>
-                            </a>
-                            <a href="{% url 'core:contact' %}" class="flex h-12 min-w-[84px] w-full sm:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em]">
-                                <span class="truncate">Contact Aloowine</span>
-                            </a>
-                        </div>
-                    </div>
+        <!-- Call to Action -->
+        <section class="mb-10 sm:mb-16 animate-slide-up">
+            <div class="bg-[#f8fafc] border border-[#cedae8] rounded-lg p-6 sm:p-10 text-center">
+                <h2 class="text-[#0d141c] text-2xl sm:text-3xl font-bold mb-4">
+                    Ready to Start Your Trading Journey?
+                </h2>
+                <p class="text-[#49709c] text-base mb-6 max-w-2xl mx-auto">
+                    Join Aloowine A. Amos and the Themosempire Fx community in Ghana. Take control of your financial future with proven strategies and expert mentorship.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{% url 'core:apply' %}" class="flex h-12 cursor-pointer items-center justify-center rounded-lg px-8 bg-[#0c77f2] text-white text-base font-bold hover:bg-[#0a65d0] transition-colors">
+                        Join Academy Now
+                    </a>
+                    <a href="{% url 'core:contact' %}" class="flex h-12 cursor-pointer items-center justify-center rounded-lg px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold hover:bg-[#dde6f2] transition-colors">
+                        Contact Aloowine
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="flex justify-center mt-16 border-t border-[#e7edf4]">
-        <div class="flex max-w-[960px] flex-1 flex-col">
-            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                    <div>
-                        <div class="flex items-center space-x-4 mb-4 justify-center md:justify-start">
-                            <div class="size-4">
-                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="#0c77f2"></path>
-                                </svg>
-                            </div>
-                            <div class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</div>
+    <footer class="border-t border-[#e7edf4] bg-white">
+        <div class="content-container py-10">
+            <div class="footer-grid grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-4 mb-4 justify-center md:justify-start">
+                        <div class="w-8 h-8">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="#0c77f2"></path>
+                            </svg>
                         </div>
-                        <p class="text-[#49709c] text-center md:text-left">
-                            Revolutionizing forex education through expert mentorship and proven strategies
-                        </p>
+                        <div class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</div>
                     </div>
-                    <div>
-                        <h4 class="text-[#0d141c] font-semibold mb-4">Platform</h4>
-                        <ul class="space-y-2 text-[#49709c]">
-                            <li><a href="{% url 'core:about' %}" class="hover:text-[#0c77f2] transition-colors">About</a></li>
-                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Careers</a></li>
-                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Blog</a></li>
-                            <li><a href="{% url 'core:contact' %}" class="hover:text-[#0c77f2] transition-colors">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-[#0d141c] font-semibold mb-4">Legal</h4>
-                        <ul class="space-y-2 text-[#49709c]">
-                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Privacy</a></li>
-                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Terms</a></li>
-                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Security</a></li>
-                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Disclaimer</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-[#0d141c] font-semibold mb-4">Contact</h4>
-                        <ul class="space-y-2 text-[#49709c]">
-                            <li><a href="tel:+233596688947" class="hover:text-[#0c77f2] transition-colors">+233 59 668 8947</a></li>
-                            <li><a href="mailto:Themosempire@gmail.com" class="hover:text-[#0c77f2] transition-colors">Themosempire@gmail.com</a></li>
-                            <li>Ghana, West Africa</li>
-                        </ul>
-                    </div>
+                    <p class="text-[#49709c] text-center md:text-left">
+                        Revolutionizing forex education through expert mentorship and proven strategies
+                    </p>
                 </div>
-                <div class="border-t border-[#e7edf4] pt-8 text-center text-[#49709c]">
-                    <p>© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+                <div>
+                    <h4 class="text-[#0d141c] font-semibold mb-4 text-center md:text-left">Platform</h4>
+                    <ul class="space-y-3 text-[#49709c] text-center md:text-left">
+                        <li><a href="{% url 'core:about' %}" class="hover:text-[#0c77f2] transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Blog</a></li>
+                        <li><a href="{% url 'core:contact' %}" class="hover:text-[#0c77f2] transition-colors">Contact</a></li>
+                    </ul>
                 </div>
-            </footer>
+                <div>
+                    <h4 class="text-[#0d141c] font-semibold mb-4 text-center md:text-left">Legal</h4>
+                    <ul class="space-y-3 text-[#49709c] text-center md:text-left">
+                        <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Terms</a></li>
+                        <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Security</a></li>
+                        <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[#0d141c] font-semibold mb-4 text-center md:text-left">Contact</h4>
+                    <ul class="space-y-3 text-[#49709c] text-center md:text-left">
+                        <li><a href="tel:+233596688947" class="hover:text-[#0c77f2] transition-colors">+233 59 668 8947</a></li>
+                        <li><a href="mailto:Themosempire@gmail.com" class="hover:text-[#0c77f2] transition-colors">Themosempire@gmail.com</a></li>
+                        <li>Ghana, West Africa</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[#e7edf4] pt-6 text-center text-[#49709c]">
+                <p>© 2025 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+            </div>
         </div>
     </footer>
 
@@ -805,107 +689,85 @@
             document.getElementById('scroll-progress').style.width = progress + '%';
         });
 
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.classList.add('active');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.remove('active');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                document.body.style.overflow = ''; // Allow scrolling
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                isMenuOpen = false;
+                document.body.style.overflow = '';
+            }
+        });
+
         // Dynamic content animations
-        const animateOnScroll = () => {
+        function animateElements() {
             const elements = document.querySelectorAll('.animate-slide-up, .animate-slide-left, .animate-slide-right');
             elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+                const elementPosition = element.getBoundingClientRect();
+                const isVisible = elementPosition.top < window.innerHeight * 0.85;
                 
-                if (elementTop < window.innerHeight - elementVisible) {
+                if (isVisible) {
                     element.style.opacity = '1';
                     element.style.transform = 'translateY(0) translateX(0)';
                 }
             });
-        };
-
-        window.addEventListener('scroll', animateOnScroll);
-        
-        // Initialize animations on load
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(animateOnScroll, 100);
-            document.documentElement.style.scrollBehavior = 'smooth';
-        });
-
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        let isMenuOpen = false;
-
-        if(mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                isMenuOpen = !isMenuOpen;
-                
-                // Toggle menu visibility
-                mobileMenu.classList.toggle('hidden');
-                
-                // Update menu button appearance
-                mobileMenuBtn.innerHTML = isMenuOpen 
-                    ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>'
-                    : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>';
-                
-                // Prevent body scrolling when menu is open
-                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (isMenuOpen && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-                    mobileMenu.classList.add('hidden');
-                    isMenuOpen = false;
-                    document.body.style.overflow = '';
-                    mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>';
-                }
-            });
         }
 
-        // Mobile optimization
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fix any mobile sizing issues
-            function adjustMobileContent() {
-                // Make sure content doesn't overflow
-                const contentElements = document.querySelectorAll('p, h1, h2, h3, h4, li, blockquote');
-                contentElements.forEach(el => {
-                    if (el.scrollWidth > el.clientWidth) {
-                        el.style.fontSize = parseInt(window.getComputedStyle(el).fontSize) - 1 + 'px';
+        // Run animations on page load and scroll
+        window.addEventListener('DOMContentLoaded', () => {
+            // Initialize all animations
+            setTimeout(animateElements, 100);
+            
+            // Ensure smooth scrolling behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Make testimonial scrolling smooth on touch devices
+            const testimonialContainer = document.querySelector('.testimony-container');
+            if (testimonialContainer) {
+                // Enable momentum scrolling on iOS
+                testimonialContainer.style.WebkitOverflowScrolling = 'touch';
+                
+                // Add wheel event for desktop smooth scrolling
+                testimonialContainer.addEventListener('wheel', (e) => {
+                    if (e.deltaY !== 0) {
+                        e.preventDefault();
+                        testimonialContainer.scrollLeft += e.deltaY;
                     }
-                });
-                
-                // Force testimonials to be visible
-                const testimonials = document.querySelectorAll('.snap-center');
-                testimonials.forEach(testimonial => {
-                    testimonial.style.minWidth = '250px';
-                });
-                
-                // Fix landscape mode issues
-                if (window.innerWidth < window.innerHeight) {
-                    document.documentElement.classList.add('portrait');
-                } else {
-                    document.documentElement.classList.remove('portrait');
-                }
-            }
-            
-            // Run adjustments
-            adjustMobileContent();
-            
-            // Re-run on resize
-            window.addEventListener('resize', adjustMobileContent);
-            window.addEventListener('orientationchange', function() {
-                setTimeout(adjustMobileContent, 100);
-            });
-            
-            // Make scrolling smoother
-            const scrollContainer = document.querySelector('.snap-x');
-            if (scrollContainer) {
-                scrollContainer.addEventListener('wheel', (e) => {
-                    e.preventDefault();
-                    scrollContainer.scrollLeft += e.deltaY;
                 }, { passive: false });
             }
         });
-        
-        // Fix iOS touch handling
+
+        window.addEventListener('scroll', animateElements);
+        window.addEventListener('resize', animateElements);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(animateElements, 300);
+        });
+
+        // Improve touch device handling
         document.addEventListener('touchstart', () => {}, {passive: true});
     </script>
 </body>
