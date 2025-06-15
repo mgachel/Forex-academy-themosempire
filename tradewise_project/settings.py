@@ -26,7 +26,7 @@ SECRET_KEY = 'your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['web-production-6d28a.up.railway.app', 'localhost', '127.0.0.1']
 
 # Application definition
 

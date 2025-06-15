@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Themosempire Fx</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
@@ -31,6 +32,29 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        /* Mobile menu styles */
+        #mobileMenu {
+            transition: opacity 0.3s ease-in-out;
+            backdrop-filter: blur(8px);
+        }
+
+        #mobileMenu.hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        #mobileMenu:not(.hidden) {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Ensure header stays above mobile menu */
+        header {
+            position: relative;
+            z-index: 51;
+            background-color: white;
         }
         
         /* Mobile optimizations */
@@ -76,6 +100,21 @@
                 background-position: center 30% !important;
             }
         }
+
+        /* Improve touch targets on mobile */
+        @media (max-width: 768px) {
+            #mobileMenu a {
+                display: block;
+                width: 100%;
+                touch-action: manipulation;
+            }
+            
+            #mobileMenuButton {
+                padding: 8px;
+                margin: -8px;
+                touch-action: manipulation;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
@@ -83,16 +122,39 @@
     <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Navigation -->
-    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-10 py-3">
-        <div class="flex items-center gap-4 text-[#0d141c]">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-4 sm:px-10 py-3">
+        <div class="flex items-center gap-2 sm:gap-4 text-[#0d141c]">
             <div class="size-4">
                 <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
                 </svg>
             </div>
-            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
+            <h2 class="text-[#0d141c] text-base sm:text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
-        <div class="flex flex-1 justify-end gap-8">
+        
+        <!-- Mobile menu button (shows on small screens) -->
+        <button id="mobileMenuButton" class="block md:hidden text-[#0d141c]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+            </svg>
+        </button>
+        
+        <!-- Mobile menu (hidden by default) -->
+        <div id="mobileMenu" class="hidden fixed top-[57px] left-0 right-0 bg-white shadow-lg z-50 md:hidden min-h-screen">
+            <div class="flex flex-col p-6 space-y-4">
+                <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:home' %}">Home</a>
+                <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:contact' %}">Contact Us</a>
+                <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:about' %}">About Us</a>
+                <div class="pt-4">
+                    <a href="{% url 'core:apply' %}" class="w-full flex justify-center items-center rounded-lg py-3 px-4 bg-[#0c77f2] text-white text-base font-bold hover:bg-[#0a65d0] transition-colors">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Desktop navigation (hidden on mobile) -->
+        <div class="hidden md:flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Home</a>
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
@@ -102,7 +164,6 @@
                 <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]">
                     <span class="truncate">Get Started</span>
                 </a>
-               
             </div>
         </div>
     </header>
@@ -153,13 +214,13 @@
                     <p>
                         We are located in 
                         <span class="text-[#0c77f2] font-semibold">Ghana</span> and designed for mastering financial literacy and forex trading.
-                        Founded by <span class="text-[#0c77f2] font-bold text-xl">Ayarisi Amos</span> — an experienced educator, swing trader, 
+                        Founded by <span class="text-[#0c77f2] font-bold text-xl">Aloowine A. Amos</span> — an experienced educator, swing trader, 
                         and intraday trader with over <span class="text-[#0c77f2] font-semibold">7 years</span> in the trading space — this academy is committed to helping individuals take 
                         full control of their finances and unlock earning potential through the foreign exchange market.
                     </p>
                     
                     <p>
-                        Ayarisi is also a proud partner of the <span class="text-[#0c77f2] font-semibold">Exness Broker Community in Ghana</span>, 
+                        Aloowine is also a proud partner of the <span class="text-[#0c77f2] font-semibold">Exness Broker Community in Ghana</span>, 
                         bringing real-world insight, proven strategies, and mentorship that bridges the gap between theory and practice.
                     </p>
                     
@@ -182,7 +243,7 @@
                 <p class="text-[#0c77f2] text-lg sm:text-xl font-bold leading-relaxed italic">
                     "Empower individuals to make smart money decisions and trade confidently."
                 </p>
-                <p class="text-[#49709c] text-sm sm:text-base">- Ayarisi Amos, Founder</p>
+                <p class="text-[#49709c] text-sm sm:text-base">- Aloowine A. Amos, Founder</p>
             </div>
 
             <!-- Our Programs Section -->
@@ -471,7 +532,7 @@
                             Ready to Start Your Trading Journey?
                         </h1>
                         <p class="text-[#49709c] text-base sm:text-lg mb-4 sm:mb-6 max-w-[720px] mx-auto">
-                            Join Ayarisi Amos and the Themosempire Fx community in Ghana. Take control of your financial future with proven strategies and expert mentorship.
+                            Join Aloowine A. Amos and the Themosempire Fx community in Ghana. Take control of your financial future with proven strategies and expert mentorship.
                         </p>
                     </div>
                     <div class="flex flex-1 justify-center">
@@ -480,7 +541,7 @@
                                 <span class="truncate">Join Academy Now</span>
                             </a>
                             <a href="{% url 'core:contact' %}" class="flex min-w-[84px] max-w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em]">
-                                <span class="truncate">Contact Ayarisi</span>
+                                <span class="truncate">Contact Aloowine</span>
                             </a>
                         </div>
                     </div>
@@ -490,16 +551,54 @@
     </div>
 
     <!-- Footer -->
-    <footer class="flex justify-center">
+    <footer class="flex justify-center mt-16 border-t border-[#e7edf4]">
         <div class="flex max-w-[960px] flex-1 flex-col">
-            <div class="flex flex-col gap-4 sm:gap-6 px-4 sm:px-5 py-6 sm:py-10 text-center @container">
-                <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-4 sm:gap-6 @[480px]:justify-around">
-                    <a class="text-[#49709c] text-xs sm:text-base font-normal leading-normal" href="#">Privacy Policy</a>
-                    <a class="text-[#49709c] text-xs sm:text-base font-normal leading-normal" href="#">Terms of Service</a>
-                    <a class="text-[#49709c] text-xs sm:text-base font-normal leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-4 justify-center md:justify-start">
+                            <div class="size-4">
+                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="#0c77f2"></path>
+                                </svg>
+                            </div>
+                            <div class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</div>
+                        </div>
+                        <p class="text-[#49709c] text-center md:text-left">
+                            Revolutionizing forex education through expert mentorship and proven strategies
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-[#0d141c] font-semibold mb-4">Platform</h4>
+                        <ul class="space-y-2 text-[#49709c]">
+                            <li><a href="{% url 'core:about' %}" class="hover:text-[#0c77f2] transition-colors">About</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Careers</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Blog</a></li>
+                            <li><a href="{% url 'core:contact' %}" class="hover:text-[#0c77f2] transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-[#0d141c] font-semibold mb-4">Legal</h4>
+                        <ul class="space-y-2 text-[#49709c]">
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Privacy</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Terms</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Security</a></li>
+                            <li><a href="#" class="hover:text-[#0c77f2] transition-colors">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-[#0d141c] font-semibold mb-4">Contact</h4>
+                        <ul class="space-y-2 text-[#49709c]">
+                            <li><a href="tel:+233596688947" class="hover:text-[#0c77f2] transition-colors">+233 59 668 8947</a></li>
+                            <li><a href="mailto:Themosempire@gmail.com" class="hover:text-[#0c77f2] transition-colors">Themosempire@gmail.com</a></li>
+                            <li>Ghana, West Africa</li>
+                        </ul>
+                    </div>
                 </div>
-                <p class="text-[#49709c] text-xs sm:text-base font-normal leading-normal">© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
-            </div>
+                <div class="border-t border-[#e7edf4] pt-8 text-center text-[#49709c]">
+                    <p>© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+                </div>
+            </footer>
         </div>
     </footer>
 
@@ -510,20 +609,6 @@
             const maxHeight = document.body.scrollHeight - window.innerHeight;
             const progress = (scrolled / maxHeight) * 100;
             document.getElementById('scroll-progress').style.width = progress + '%';
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
         });
 
         // Dynamic content animations
@@ -545,7 +630,41 @@
         // Initialize animations on load
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(animateOnScroll, 100);
+            document.documentElement.style.scrollBehavior = 'smooth';
         });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let isMenuOpen = false;
+
+        if(mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                isMenuOpen = !isMenuOpen;
+                
+                // Toggle menu visibility
+                mobileMenu.classList.toggle('hidden');
+                
+                // Update menu button appearance
+                mobileMenuBtn.innerHTML = isMenuOpen 
+                    ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>'
+                    : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>';
+                
+                // Prevent body scrolling when menu is open
+                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    isMenuOpen = false;
+                    document.body.style.overflow = '';
+                    mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>';
+                }
+            });
+        }
     </script>
 </body>
 </html>
