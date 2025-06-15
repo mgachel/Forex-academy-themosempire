@@ -1,1 +1,1 @@
-web: gunicorn tradewise.wsgi:application --log-file -
+web: gunicorn tradewise_project.wsgi:application --log-file -
