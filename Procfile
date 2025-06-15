@@ -1,1 +1,1 @@
-web: gunicorn tradewise_project.wsgi:application --log-file -
+web: cd $(dirname $(find . -name manage.py)) && gunicorn $(basename $(dirname $(find . -name wsgi.py))).wsgi
