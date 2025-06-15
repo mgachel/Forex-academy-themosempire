@@ -31,16 +31,35 @@
             <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
         <div class="flex flex-1 justify-end gap-8">
-            <div class="flex items-center gap-9">
+            <!-- Mobile menu button (shows on small screens) -->
+            <button id="mobileMenuButton" class="block md:hidden text-[#0d141c]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+                </svg>
+            </button>
+            
+            <!-- Mobile menu (hidden by default) -->
+            <div id="mobileMenu" class="hidden absolute top-16 right-0 left-0 bg-white shadow-lg z-50 md:hidden">
+                <div class="flex flex-col p-4">
+                    <a class="py-2 text-[#0d141c] text-sm font-medium" href="{% url 'core:home' %}">Home</a>
+                    <a class="py-2 text-[#0d141c] text-sm font-medium" href="{% url 'core:contact' %}">Contact Us</a>
+                    <a class="py-2 text-[#0d141c] text-sm font-medium" href="{% url 'core:about' %}">About Us</a>
+                    <a href="{% url 'core:apply' %}" class="py-2 mt-2 flex justify-center items-center rounded-lg h-10 bg-[#0c77f2] text-slate-50 text-sm font-bold">
+                        <span>Get Started</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Desktop navigation (hidden on small screens) -->
+            <div class="hidden md:flex items-center gap-9">
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Home</a>
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:about' %}">About Us</a>
             </div>
-            <div class="flex gap-2">
+            <div class="hidden md:flex gap-2">
                 <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c77f2] text-slate-50 text-sm font-bold leading-normal tracking-[0.015em]">
                     <span class="truncate">Get Started</span>
                 </a>
-                
             </div>
         </div>
     </header>

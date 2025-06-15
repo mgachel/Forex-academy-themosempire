@@ -46,6 +46,44 @@
         .contact-card:hover .contact-icon {
             transform: scale(1.1);
         }
+
+        /* Mobile menu styles */
+        #mobileMenu {
+            transition: opacity 0.3s ease-in-out;
+            backdrop-filter: blur(8px);
+        }
+
+        #mobileMenu.hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        #mobileMenu:not(.hidden) {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Ensure header stays above mobile menu */
+        header {
+            position: relative;
+            z-index: 51;
+            background-color: white;
+        }
+
+        /* Improve touch targets on mobile */
+        @media (max-width: 768px) {
+            #mobileMenu a {
+                display: block;
+                width: 100%;
+                touch-action: manipulation;
+            }
+            
+            #mobileMenuButton {
+                padding: 8px;
+                margin: -8px;
+                touch-action: manipulation;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
@@ -53,16 +91,39 @@
     <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Navigation -->
-    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-10 py-3">
-        <div class="flex items-center gap-4 text-[#0d141c]">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-4 sm:px-10 py-3">
+        <div class="flex items-center gap-2 sm:gap-4 text-[#0d141c]">
             <div class="size-4">
                 <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
                 </svg>
             </div>
-            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
+            <h2 class="text-[#0d141c] text-base sm:text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
-        <div class="flex flex-1 justify-end gap-8">
+        
+        <!-- Mobile menu button (shows on small screens) -->
+        <button id="mobileMenuButton" class="block md:hidden text-[#0d141c]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
+            </svg>
+        </button>
+        
+        <!-- Mobile menu (hidden by default) -->
+        <div id="mobileMenu" class="hidden fixed top-[57px] left-0 right-0 bg-white shadow-lg z-50 md:hidden min-h-screen">
+            <div class="flex flex-col p-6 space-y-4">
+                <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:home' %}">Home</a>
+                <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:contact' %}">Contact Us</a>
+                <a class="py-3 text-[#0d141c] text-base font-medium hover:text-[#0c77f2] transition-colors" href="{% url 'core:about' %}">About Us</a>
+                <div class="pt-4">
+                    <a href="{% url 'core:apply' %}" class="w-full flex justify-center items-center rounded-lg py-3 px-4 bg-[#0c77f2] text-white text-base font-bold hover:bg-[#0a65d0] transition-colors">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Desktop menu (hidden on mobile) -->
+        <div class="hidden md:flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:home' %}">Home</a>
                 <a class="text-[#0d141c] text-sm font-medium leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
@@ -412,6 +473,41 @@
             setTimeout(animateOnScroll, 100);
             document.documentElement.style.scrollBehavior = 'smooth';
         });
+    </script>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let isMenuOpen = false;
+
+        if(mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                isMenuOpen = !isMenuOpen;
+                
+                // Toggle menu visibility
+                mobileMenu.classList.toggle('hidden');
+                
+                // Update menu button appearance
+                mobileMenuBtn.innerHTML = isMenuOpen 
+                    ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>'
+                    : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>';
+                
+                // Prevent body scrolling when menu is open
+                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    isMenuOpen = false;
+                    document.body.style.overflow = '';
+                    mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>';
+                }
+            });
+        }
     </script>
 </body>
 </html>

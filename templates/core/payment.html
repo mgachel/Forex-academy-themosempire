@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Complete Payment - Themosempire Fx</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -80,6 +81,41 @@
         .security-badge {
             animation: pulse 2s infinite;
         }
+
+        /* Add this to your style section */
+        @media (max-width: 640px) {
+            .hero-bg {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('mobile-hero-img.jpg') !important;
+                background-position: center !important;
+            }
+        }
+        
+        /* Improve font sizes for mobile */
+        @media (max-width: 480px) {
+            .text-amount {
+                font-size: 1.25rem !important;
+            }
+            
+            .payment-method i {
+                font-size: 1rem !important;
+            }
+            
+            .payment-method p {
+                font-size: 0.65rem !important;
+            }
+        }
+        
+        /* Add smooth transitions for better mobile experience */
+        .form-input, .btn-primary, .payment-method {
+            transition: all 0.2s ease-in-out;
+        }
+        
+        /* Enhance touch targets for mobile */
+        @media (max-width: 640px) {
+            .payment-method, .btn-primary, .form-input {
+                touch-action: manipulation;
+            }
+        }
     </style>
 </head>
 
@@ -88,14 +124,14 @@
     <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Navigation -->
-    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-10 py-3">
-        <div class="flex items-center gap-4 text-[#0d141c]">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] px-4 sm:px-10 py-3">
+        <div class="flex items-center gap-2 sm:gap-4 text-[#0d141c]">
             <div class="size-4">
                 <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
                 </svg>
             </div>
-            <h2 class="text-[#0d141c] text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
+            <h2 class="text-[#0d141c] text-base sm:text-lg font-bold leading-tight tracking-[-0.015em]">Themosempire Fx</h2>
         </div>
         <div class="hidden md:flex items-center gap-4">
             <div class="flex items-center gap-2 text-[#0c77f2]">
@@ -103,33 +139,38 @@
                 <span class="text-sm font-medium">SSL Secured Payment</span>
             </div>
         </div>
+        <!-- Mobile SSL badge -->
+        <div class="flex md:hidden items-center gap-1 text-[#0c77f2]">
+            <i class="fas fa-shield-alt text-xs"></i>
+            <span class="text-xs">Secured</span>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <div class="@container mb-8">
+    <div class="@container mb-4 sm:mb-8">
         <div class="@[480px]:p-4">
-            <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
-                         style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
+            <div class="flex min-h-[240px] sm:min-h-[480px] flex-col gap-4 sm:gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4 hero-bg" 
+                 style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
                 <div class="flex flex-col gap-2 text-center">
-                    <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                    <h1 class="text-white text-2xl sm:text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
                         Complete Your Payment
                     </h1>
-                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                        Secure your spot in the Themosempire Fx program with our safe, encrypted payment system
+                    <h2 class="text-white text-xs sm:text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                        Secure your spot in the Themosempire Fx program 
                     </h2>
                 </div>
                 <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 mt-4">
-                    <span class="ghana-flag w-6 h-1 rounded-full"></span>
-                    <span class="text-white text-sm font-bold"> Located in Ghana</span>
+                    <span class="ghana-flag w-5 sm:w-6 h-1 rounded-full"></span>
+                    <span class="text-white text-xs sm:text-sm font-bold">Located in Ghana</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+    <div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-3 sm:py-5">
         <div class="flex flex-col max-w-[960px] flex-1">
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
                 <!-- Payment Summary -->
                 <div class="space-y-6 animate-slide-up">
                     <!-- Course Details Card -->
@@ -230,9 +271,10 @@
                             </div>
                         </div>
                         
-                        <form id="payment-form" class="space-y-6">
+                        <!-- Optimize the form elements for better touch/mobile experience -->
+                        <form id="payment-form" class="space-y-4 sm:space-y-6">
                             <div>
-                                <label for="email" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                <label for="email" class="block text-[#0d141c] font-medium mb-1 sm:mb-2 flex items-center">
                                     <i class="fas fa-envelope mr-2 text-[#0c77f2]"></i>
                                     Email Address
                                 </label>
@@ -240,14 +282,14 @@
                                     type="email"
                                     id="email"
                                     required
-                                    class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
+                                    class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
                                     placeholder="your@email.com"
                                     value="{{ application.email|default:'' }}"
                                 />
                             </div>
 
                             <div>
-                                <label for="fullName" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                <label for="fullName" class="block text-[#0d141c] font-medium mb-1 sm:mb-2 flex items-center">
                                     <i class="fas fa-user mr-2 text-[#0c77f2]"></i>
                                     Full Name
                                 </label>
@@ -255,28 +297,28 @@
                                     type="text"
                                     id="fullName"
                                     required
-                                    class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
+                                    class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
                                     placeholder="John Doe"
                                     value="{{ application.full_name|default:'' }}"
                                 />
                             </div>
 
                             <div>
-                                <label for="phone" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                <label for="phone" class="block text-[#0d141c] font-medium mb-1 sm:mb-2 flex items-center">
                                     <i class="fas fa-phone mr-2 text-[#0c77f2]"></i>
                                     Phone Number
                                 </label>
                                 <input
                                     type="tel"
                                     id="phone"
-                                    class="form-input w-full px-4 py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
+                                    class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border border-[#cedae8] rounded-lg text-[#0d141c] placeholder-gray-400"
                                     placeholder="+233 XX XXX XXXX"
                                     value="{{ application.phone|default:'' }}"
                                 />
                             </div>
 
                             <div>
-                                <label for="amount" class="block text-[#0d141c] font-medium mb-2 flex items-center">
+                                <label for="amount" class="block text-[#0d141c] font-medium mb-1 sm:mb-2 flex items-center">
                                     <i class="fas fa-dollar-sign mr-2 text-[#0c77f2]"></i>
                                     Amount (GHS)
                                 </label>
@@ -300,7 +342,7 @@
                                 type="button"
                                 onclick="pay()"
                                 id="payBtn"
-                                class="w-full btn-primary bg-[#0c77f2] text-white font-bold py-4 px-8 rounded-lg text-lg shadow-md"
+                                class="w-full btn-primary bg-[#0c77f2] text-white font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg text-base sm:text-lg shadow-md"
                             >
                                 <span id="btn-text" class="flex items-center justify-center">
                                     <i class="fas fa-lock mr-3"></i>
@@ -316,9 +358,9 @@
                             </button>
 
                             <!-- Payment Methods -->
-                            <div class="text-center pt-6">
-                                <p class="text-[#49709c] text-sm mb-4">Accepted payment methods:</p>
-                                <div class="grid grid-cols-4 gap-4">
+                            <div class="text-center pt-4 sm:pt-6">
+                                <p class="text-[#49709c] text-xs sm:text-sm mb-2 sm:mb-4">Accepted payment methods:</p>
+                                <div class="grid grid-cols-4 gap-2 sm:gap-4">
                                     <div class="payment-method rounded-lg p-3 text-center border border-[#cedae8] bg-white">
                                         <i class="fas fa-credit-card text-[#0c77f2] text-lg mb-1"></i>
                                         <p class="text-xs text-[#49709c]">Cards</p>
@@ -351,48 +393,48 @@
             </div>
 
             <!-- FAQ Section -->
-            <div class="mt-16 animate-slide-up">
-                <h2 class="text-2xl font-bold text-[#0d141c] mb-6 text-center">Frequently Asked Questions</h2>
+            <div class="mt-8 sm:mt-16 animate-slide-up">
+                <h2 class="text-xl sm:text-2xl font-bold text-[#0d141c] mb-4 sm:mb-6 text-center">Frequently Asked Questions</h2>
                 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
-                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">Is my payment information secure?</h3>
-                        <p class="text-[#49709c]">Yes, all payments are processed through Paystack's secure payment gateway with 256-bit SSL encryption.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-4 sm:p-6 shadow-sm">
+                        <h3 class="text-base sm:text-lg font-bold text-[#0d141c] mb-1 sm:mb-2">Is my payment information secure?</h3>
+                        <p class="text-[#49709c] text-sm sm:text-base">Yes, all payments are processed through Paystack's secure payment gateway with 256-bit SSL encryption.</p>
                     </div>
                     
-                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
-                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">When will I get access to the course?</h3>
-                        <p class="text-[#49709c]">You'll receive access credentials within 24 hours after your payment is successfully processed.</p>
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-4 sm:p-6 shadow-sm">
+                        <h3 class="text-base sm:text-lg font-bold text-[#0d141c] mb-1 sm:mb-2">When will I get access to the course?</h3>
+                        <p class="text-[#49709c] text-sm sm:text-base">You'll receive access credentials within 24 hours after your payment is successfully processed.</p>
                     </div>
                     
-                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
-                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">What happens if I need a refund?</h3>
-                        <p class="text-[#49709c]">Please contact our support team within 7 days of purchase if you need to request a refund.</p>
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-4 sm:p-6 shadow-sm">
+                        <h3 class="text-base sm:text-lg font-bold text-[#0d141c] mb-1 sm:mb-2">What happens if I need a refund?</h3>
+                        <p class="text-[#49709c] text-sm sm:text-base">Please contact our support team within 7 days of purchase if you need to request a refund.</p>
                     </div>
                     
-                    <div class="rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm">
-                        <h3 class="text-lg font-bold text-[#0d141c] mb-2">Can I pay in installments?</h3>
-                        <p class="text-[#49709c]">Yes, we offer flexible payment plans. Contact our team for details on installment options.</p>
+                    <div class="rounded-xl border border-[#cedae8] bg-white p-4 sm:p-6 shadow-sm">
+                        <h3 class="text-base sm:text-lg font-bold text-[#0d141c] mb-1 sm:mb-2">Can I pay in installments?</h3>
+                        <p class="text-[#49709c] text-sm sm:text-base">Yes, we offer flexible payment plans. Contact our team for details on installment options.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Need Help Section -->
-            <div class="mt-16 rounded-xl border border-[#cedae8] bg-white p-6 shadow-sm text-center animate-slide-up">
-                <h3 class="text-xl font-bold text-[#0d141c] mb-4">Need Help?</h3>
-                <p class="text-[#49709c] mb-6">Our team is available to assist with any payment issues or questions</p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="tel:+233596688947" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+            <div class="mt-8 sm:mt-16 rounded-xl border border-[#cedae8] bg-white p-4 sm:p-6 shadow-sm text-center animate-slide-up">
+                <h3 class="text-lg sm:text-xl font-bold text-[#0d141c] mb-2 sm:mb-4">Need Help?</h3>
+                <p class="text-[#49709c] text-sm mb-4 sm:mb-6">Our team is available to assist with payment issues</p>
+                <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+                    <a href="tel:+233596688947" class="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2] text-sm">
                         <i class="fas fa-phone"></i>
                         <span>+233 59 668 8947</span>
                     </a>
-                    <a href="mailto:Themosempire@gmail.com" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+                    <a href="mailto:Themosempire@gmail.com" class="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2] text-sm">
                         <i class="fas fa-envelope"></i>
-                        <span>Themosempire@gmail.com</span>
+                        <span>Email Support</span>
                     </a>
-                    <a href="https://wa.me/233596688947" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2]">
+                    <a href="https://wa.me/233596688947" class="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-[#e7edf4] text-[#0c77f2] text-sm">
                         <i class="fab fa-whatsapp"></i>
-                        <span>WhatsApp Support</span>
+                        <span>WhatsApp</span>
                     </a>
                 </div>
             </div>
@@ -413,27 +455,28 @@
     </div>
 
     <!-- Footer -->
-    <footer class="flex justify-center mt-16 border-t border-[#e7edf4]">
+    <!-- Improve footer layout for mobile -->
+    <footer class="flex justify-center mt-8 sm:mt-16 border-t border-[#e7edf4]">
         <div class="flex max-w-[960px] flex-1 flex-col">
-            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-                <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
-                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
-                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Refund Policy</a>
-                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="{% url 'core:contact' %}">Contact Us</a>
+            <div class="flex flex-col gap-4 sm:gap-6 px-4 sm:px-5 py-6 sm:py-10 text-center @container">
+                <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 @[480px]:justify-around">
+                    <a class="text-[#49709c] text-sm sm:text-base font-normal leading-normal" href="#">Privacy Policy</a>
+                    <a class="text-[#49709c] text-sm sm:text-base font-normal leading-normal" href="#">Terms of Service</a>
+                    <a class="text-[#49709c] text-sm sm:text-base font-normal leading-normal" href="#">Refund Policy</a>
+                    <a class="text-[#49709c] text-sm sm:text-base font-normal leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
                 </div>
-                <div class="flex items-center justify-center gap-4 mb-4">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-2 sm:mb-4">
                     <div class="flex items-center text-[#0c77f2]">
                         <i class="fas fa-shield-alt mr-2"></i>
-                        <span class="text-sm">SSL Secured</span>
+                        <span class="text-xs sm:text-sm">SSL Secured</span>
                     </div>
                     <div class="flex items-center text-[#0c77f2]">
                         <i class="fas fa-lock mr-2"></i>
-                        <span class="text-sm">256-bit Encryption</span>
+                        <span class="text-xs sm:text-sm">256-bit Encryption</span>
                     </div>
                 </div>
-                <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
-            </footer>
+                <p class="text-[#49709c] text-xs sm:text-sm font-normal leading-normal">© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+            </div>
         </div>
     </footer>
 
@@ -568,6 +611,49 @@
         window.addEventListener('load', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    </script>
+    <script>
+        // Add to your existing JavaScript code
+    
+        // Better mobile scrolling for form fields
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                // Small delay to allow keyboard to appear
+                setTimeout(() => {
+                    const viewportHeight = window.innerHeight;
+                    const inputPosition = this.getBoundingClientRect().top;
+                    
+                    if (inputPosition > viewportHeight / 2) {
+                        window.scrollBy({
+                            top: inputPosition - (viewportHeight / 4),
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300);
+            });
+        });
+        
+        // Optimize animations for mobile
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+            document.querySelectorAll('.animate-slide-up').forEach(el => {
+                el.style.animationDuration = '0.5s'; // Speed up animations on mobile
+            });
+        }
+        
+        // Improve mobile touch feedback
+        document.getElementById('payBtn').addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+        
+        document.getElementById('payBtn').addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        });
+        
+        // Detect mobile device and adjust UI accordingly
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            document.body.classList.add('mobile-device');
+        }
     </script>
 </body>
 </html>

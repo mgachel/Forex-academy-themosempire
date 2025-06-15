@@ -26,7 +26,7 @@ SECRET_KEY = 'your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com', 'your-future-domain.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ThemosempireFx.onrender.com', 'your-future-domain.com']
 
 # Application definition
 

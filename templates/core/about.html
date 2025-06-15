@@ -32,6 +32,50 @@
             transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
+        
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .ghana-flag {
+                height: 3px;
+            }
+            
+            /* Apply touch-friendly styles to all interactive elements */
+            a, button {
+                touch-action: manipulation;
+            }
+            
+            /* Better tap targets */
+            a, button {
+                min-height: 44px;
+            }
+            
+            .animate-slide-up, .animate-slide-left, .animate-slide-right {
+                transition-duration: 0.5s;
+            }
+        }
+        
+        /* Add smooth scroll snap for testimonials on mobile */
+        .snap-x {
+            scroll-snap-type: x mandatory;
+        }
+        
+        .snap-center {
+            scroll-snap-align: center;
+        }
+        
+        /* Enhanced touch feedback */
+        @media (hover: none) {
+            a:active, button:active {
+                transform: scale(0.98);
+            }
+        }
+        
+        /* Optimize hero image loading for mobile */
+        @media (max-width: 640px) {
+            .hero-bg {
+                background-position: center 30% !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-[#0d141c] overflow-x-hidden">
@@ -70,36 +114,36 @@
             <!-- Hero Section -->
             <div class="@container">
                 <div class="@[480px]:p-4">
-                    <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
+                    <div class="flex min-h-[240px] sm:min-h-[480px] flex-col gap-4 sm:gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4" 
                          style="background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBD_9Zi7BvQmQtU_f5eI_CU7lmV4JLpZvHCSwioRggYyit-7QxyvTVkvC4Ik5AKY2k584jMUGgBy-q8_FrPlGvZOEbCPjC8bipHo7PQEwcVH2hMoWCguMgRxmxfLBpMF0edxb4E7z5Zd0cca3kRdHjBM7IDjo00Mq7AETNN_3PkXpFpfe1iZ9dyrz0ntUICADO0Ch9fPB-ijliJrZBha1Nf7ziYxpjNWdD8GpUkZCjahe2bBZ-wPp6Z5jMwOkMK9pBsDhG3fuQBIw');">
                         <div class="flex flex-col gap-2 text-center">
-                            <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                            <h1 class="text-white text-2xl sm:text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
                                 About Us
                             </h1>
-                            <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                            <h2 class="text-white text-xs sm:text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal px-2">
                                 Empowering Ghanaian traders through expert education, proven strategies, and comprehensive financial literacy
                             </h2>
                         </div>
                         <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/20 mt-4">
-                            <span class="ghana-flag w-6 h-1 rounded-full"></span>
-                            <span class="text-white text-sm font-bold"> Proudly Located in Ghana</span>
+                            <span class="ghana-flag w-5 sm:w-6 h-1 rounded-full"></span>
+                            <span class="text-white text-xs sm:text-sm font-bold"> Proudly Located in Ghana</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Who We Are Section -->
-            <div class="flex flex-col gap-10 px-4 py-10 @container animate-slide-up">
-                <div class="flex flex-col gap-4">
-                    <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+            <div class="flex flex-col gap-6 sm:gap-10 px-4 py-6 sm:py-10 @container animate-slide-up">
+                <div class="flex flex-col gap-3 sm:gap-4">
+                    <h1 class="text-[#0d141c] tracking-light text-2xl sm:text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
                         Who We Are
                     </h1>
-                    <p class="text-[#0d141c] text-base font-normal leading-normal max-w-[720px]">
+                    <p class="text-[#0d141c] text-sm sm:text-base font-normal leading-normal max-w-[720px]">
                         Located in the heart of Ghana 
                     </p>
                 </div>
-                <div class="space-y-6 text-[#49709c] text-lg leading-relaxed">
-                    <p class="text-xl">
+                <div class="space-y-4 sm:space-y-6 text-[#49709c] text-base sm:text-lg leading-relaxed">
+                    <p class="text-lg sm:text-xl">
                         Welcome to <span class="text-[#0c77f2] font-bold">Themosempire</span>, a transformative learning hub designed to equip you with 
                         <span class="text-[#0c77f2] font-semibold">essential financial literacy skills and deep insights into the forex trading world</span>. 
                         Whether you're a beginner trying to understand money or a budding trader aiming to earn in the forex market, we provide step-by-step guidance, 
@@ -128,17 +172,17 @@
             </div>
 
             <!-- Mission Statement -->
-            <div class="flex flex-col gap-4 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center animate-slide-up mb-10">
+            <div class="flex flex-col gap-3 sm:gap-4 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center animate-slide-up mb-6 sm:mb-10">
                 <div class="flex justify-center pb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0c77f2" viewBox="0 0 256 256">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#0c77f2" viewBox="0 0 256 256">
                         <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-68a28,28,0,0,1-28,28H116a8,8,0,0,1,0-16h24a12,12,0,0,0,0-24H116a28,28,0,0,1,0-56h24a8,8,0,0,1,0,16H116a12,12,0,0,0,0,24h24A28,28,0,0,1,168,148Z"/>
                     </svg>
                 </div>
-                <h2 class="text-[#0d141c] text-2xl font-bold">Our Mission</h2>
-                <p class="text-[#0c77f2] text-xl font-bold leading-relaxed italic">
+                <h2 class="text-[#0d141c] text-xl sm:text-2xl font-bold">Our Mission</h2>
+                <p class="text-[#0c77f2] text-lg sm:text-xl font-bold leading-relaxed italic">
                     "Empower individuals to make smart money decisions and trade confidently."
                 </p>
-                <p class="text-[#49709c] text-base">- Ayarisi Amos, Founder</p>
+                <p class="text-[#49709c] text-sm sm:text-base">- Ayarisi Amos, Founder</p>
             </div>
 
             <!-- Our Programs Section -->
@@ -147,14 +191,15 @@
                     <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
                         Our Programs
                     </h1>
-                    <p class="text-[#0d141c] text-base font-normal leading-normal max-w-[720px]">
+                    <p class="text-[#0d141c] text-sm sm:text-base font-normal leading-normal max-w-[720px]">
                         2 Year Comprehensive Course
                     </p>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <!-- Financial Literacy 101 -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                <!-- Make program cards stack vertically on mobile -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <!-- Financial Literacy 101 - keep content but adjust padding -->
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
                                 <span class="text-xl">💰</span>
@@ -185,7 +230,7 @@
                     </div>
 
                     <!-- Introduction to Forex -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
                                 <span class="text-xl">📈</span>
@@ -216,7 +261,7 @@
                     </div>
 
                     <!-- Technical & Fundamental Analysis -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
                                 <span class="text-xl">📊</span>
@@ -247,7 +292,7 @@
                     </div>
 
                     <!-- Trading Psychology & Risk Management -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6">
+                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
                                 <span class="text-xl">🧠</span>
@@ -279,17 +324,17 @@
                 </div>
 
                 <!-- Live Trading Program -->
-                <div class="flex flex-col gap-3 rounded-lg border-2 border-[#0c77f2] bg-slate-50 p-6 text-center mt-4">
+                <div class="flex flex-col gap-3 rounded-lg border-2 border-[#0c77f2] bg-slate-50 p-4 sm:p-6 text-center mt-4">
                     <div class="flex justify-center">
-                        <div class="w-16 h-16 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
-                            <span class="text-2xl">🎯</span>
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-[#0c77f2] flex items-center justify-center text-white">
+                            <span class="text-xl sm:text-2xl">🎯</span>
                         </div>
                     </div>
-                    <h3 class="text-[#0d141c] text-2xl font-bold">Live Trading & Mentorship Program</h3>
-                    <p class="text-[#0c77f2] text-sm font-semibold">(Advanced)</p>
-                    <p class="text-[#49709c] mb-4">Trade with experts, receive feedback, and grow your strategy</p>
+                    <h3 class="text-[#0d141c] text-xl sm:text-2xl font-bold">Live Trading & Mentorship Program</h3>
+                    <p class="text-[#0c77f2] text-xs sm:text-sm font-semibold">(Advanced)</p>
+                    <p class="text-[#49709c] text-sm mb-3 sm:mb-4">Trade with experts, receive feedback, and grow your strategy</p>
                     
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                         <div class="text-center">
                             <span class="text-green-500">✓</span>
                             <p class="text-[#49709c] text-sm mt-1">Live sessions</p>
@@ -334,22 +379,23 @@
             </div>
 
             <!-- Testimonials Section -->
-            <div class="flex flex-col gap-10 px-4 py-10 @container animate-slide-up">
-                <div class="flex flex-col gap-4">
-                    <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
+            <div class="flex flex-col gap-6 sm:gap-10 px-4 py-6 sm:py-10 @container animate-slide-up">
+                <div class="flex flex-col gap-3 sm:gap-4">
+                    <h1 class="text-[#0d141c] tracking-light text-2xl sm:text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
                         What Our Students Say
                     </h1>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Testimonial 1 -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center">
+                <!-- Make testimonials scroll horizontally on mobile -->
+                <div class="flex md:grid md:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto pb-4 md:overflow-visible snap-x snap-mandatory">
+                    <!-- Testimonial 1 - add snap-center for mobile scrolling -->
+                    <div class="flex-shrink-0 w-[85vw] md:w-auto snap-center flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center">
                         <div class="flex justify-center">
-                            <div class="w-16 h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-2xl">👩</span>
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-xl sm:text-2xl">👩</span>
                             </div>
                         </div>
-                        <blockquote class="text-[#49709c] italic text-lg mb-2 leading-relaxed">
+                        <blockquote class="text-[#49709c] italic text-base sm:text-lg mb-2 leading-relaxed">
                             "This academy changed my view on money and introduced me to a skill that pays for life!"
                         </blockquote>
                         <div class="text-[#0c77f2] font-bold">– Sarah</div>
@@ -357,13 +403,13 @@
                     </div>
 
                     <!-- Testimonial 2 -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center">
+                    <div class="flex-shrink-0 w-[85vw] md:w-auto snap-center flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center">
                         <div class="flex justify-center">
-                            <div class="w-16 h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-2xl">👨</span>
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-xl sm:text-2xl">👨</span>
                             </div>
                         </div>
-                        <blockquote class="text-[#49709c] italic text-lg mb-2 leading-relaxed">
+                        <blockquote class="text-[#49709c] italic text-base sm:text-lg mb-2 leading-relaxed">
                             "I went from knowing nothing about forex to making my first profit in 2 months!"
                         </blockquote>
                         <div class="text-[#0c77f2] font-bold">– Daniel</div>
@@ -371,18 +417,25 @@
                     </div>
 
                     <!-- Testimonial 3 -->
-                    <div class="flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-6 text-center">
+                    <div class="flex-shrink-0 w-[85vw] md:w-auto snap-center flex flex-col gap-3 rounded-lg border border-[#cedae8] bg-slate-50 p-4 sm:p-6 text-center">
                         <div class="flex justify-center">
-                            <div class="w-16 h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
-                                <span class="text-2xl">👩‍🎓</span>
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#0c77f2] flex items-center justify-center text-white">
+                                <span class="text-xl sm:text-2xl">👩‍🎓</span>
                             </div>
                         </div>
-                        <blockquote class="text-[#49709c] italic text-lg mb-2 leading-relaxed">
+                        <blockquote class="text-[#49709c] italic text-base sm:text-lg mb-2 leading-relaxed">
                             "The financial literacy course helped me budget and save effectively. Highly recommended!"
                         </blockquote>
                         <div class="text-[#0c77f2] font-bold">– Anita</div>
                         <div class="text-[#49709c] text-sm">Graduate</div>
                     </div>
+                </div>
+                
+                <!-- Add testimonial navigation dots for mobile -->
+                <div class="flex justify-center gap-2 md:hidden">
+                    <span class="w-2 h-2 rounded-full bg-[#0c77f2]"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#cedae8]"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#cedae8]"></span>
                 </div>
             </div>
 
@@ -412,21 +465,21 @@
 
             <!-- Call to Action -->
             <div class="@container animate-slide-up">
-                <div class="flex flex-col justify-end gap-6 px-4 py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
+                <div class="flex flex-col justify-end gap-4 sm:gap-6 px-4 py-6 sm:py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
                     <div class="flex flex-col gap-2 text-center">
-                        <h1 class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
+                        <h1 class="text-[#0d141c] tracking-light text-2xl sm:text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px] mx-auto">
                             Ready to Start Your Trading Journey?
                         </h1>
-                        <p class="text-[#49709c] text-lg mb-6 max-w-[720px] mx-auto">
+                        <p class="text-[#49709c] text-base sm:text-lg mb-4 sm:mb-6 max-w-[720px] mx-auto">
                             Join Ayarisi Amos and the Themosempire Fx community in Ghana. Take control of your financial future with proven strategies and expert mentorship.
                         </p>
                     </div>
                     <div class="flex flex-1 justify-center">
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#0c77f2] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]">
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full sm:w-auto">
+                            <a href="{% url 'core:apply' %}" class="flex min-w-[84px] max-w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#0c77f2] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]">
                                 <span class="truncate">Join Academy Now</span>
                             </a>
-                            <a href="{% url 'core:contact' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em]">
+                            <a href="{% url 'core:contact' %}" class="flex min-w-[84px] max-w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-[#e7edf4] text-[#0d141c] text-base font-bold leading-normal tracking-[0.015em]">
                                 <span class="truncate">Contact Ayarisi</span>
                             </a>
                         </div>
@@ -439,14 +492,14 @@
     <!-- Footer -->
     <footer class="flex justify-center">
         <div class="flex max-w-[960px] flex-1 flex-col">
-            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-                <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
-                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
-                    <a class="text-[#49709c] text-base font-normal leading-normal min-w-40" href="{% url 'core:contact' %}">Contact Us</a>
+            <div class="flex flex-col gap-4 sm:gap-6 px-4 sm:px-5 py-6 sm:py-10 text-center @container">
+                <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-4 sm:gap-6 @[480px]:justify-around">
+                    <a class="text-[#49709c] text-xs sm:text-base font-normal leading-normal" href="#">Privacy Policy</a>
+                    <a class="text-[#49709c] text-xs sm:text-base font-normal leading-normal" href="#">Terms of Service</a>
+                    <a class="text-[#49709c] text-xs sm:text-base font-normal leading-normal" href="{% url 'core:contact' %}">Contact Us</a>
                 </div>
-                <p class="text-[#49709c] text-base font-normal leading-normal">© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
-            </footer>
+                <p class="text-[#49709c] text-xs sm:text-base font-normal leading-normal">© 2024 Themosempire Fx. All rights reserved. | 🇬🇭 Made in Ghana with ❤️</p>
+            </div>
         </div>
     </footer>
 
