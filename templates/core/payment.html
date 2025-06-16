@@ -515,7 +515,7 @@
             const email = document.getElementById('email').value;
             const name = document.getElementById('fullName').value;
             const phone = document.getElementById('phone').value;
-            const amount = 20000; // Updated amount to 20000 GHS
+            const amount = 20000; 
 
             if (!email || !name) {
                 alert('Please fill in all required fields');
@@ -532,7 +532,7 @@
             payBtn.disabled = true;
 
             const handler = PaystackPop.setup({
-                key: 'pk_live_9f1ad537884643df3a68b43c58e9c1bd9d5f2c84',
+                key: 'pk_live_e6bcccb4027d0f67c1ca7e47803d020387ac5b2b',
                 email: email,
                 amount: amount * 100, // Convert to pesewas (now 2,000,000 pesewas = GHS 20,000)
                 currency: 'GHS',
