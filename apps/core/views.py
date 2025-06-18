@@ -21,7 +21,7 @@ def payment_view(request):
     """Handle payment view with application data from session"""
     # Get application data from session
     application_data = request.session.get('application_data', {})
-    course_price = request.session.get('course_price', 2000)  # Default to 2000
+    course_price = 20000
     
     if not application_data:
         # If no application data, redirect to application form
@@ -29,7 +29,7 @@ def payment_view(request):
         
     context = {
         'application_data': application_data,
-        'course_price': course_price,
+        'course_price': 20000,
         'email': application_data.get('email', ''),
         'full_name': f"{application_data.get('first_name', '')} {application_data.get('last_name', '')}",
         'phone': application_data.get('phone', ''),
@@ -56,6 +56,7 @@ def payment_success(request):
     return render(request, 'core/payment_success.html', context)
 
 def contact(request):
+    
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -137,9 +138,7 @@ def apply(request):
             
             # Calculate course price
             course_prices = {
-                'basic': 1997,
-                'premium': 2997,
-                'vip': 4997
+                ''
             }
             course_price = course_prices.get(form.cleaned_data['desired_course'], 2000)
             request.session['course_price'] = course_price

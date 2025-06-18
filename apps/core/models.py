@@ -143,12 +143,10 @@ class Application(models.Model):
     def get_course_price(self):
         """Return course price based on selected course type"""
         prices = {
-            'basic': 1997,
-            'premium': 2997,
-            'vip': 4997
+            'course_price': 200000,
         }
         
-        return prices.get(self.desired_course, 2500)  # Default to 2500 if course not found
+        return prices.get(self.desired_course, 200000)  # Default to 2500 if course not found
     
     def colored_status(self):
         return format_html('<span style="color: green;">{}</span>', self.status)

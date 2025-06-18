@@ -26,7 +26,7 @@ SECRET_KEY = 'your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['web-production-6d28a.up.railway.app', 'localhost', '127.0.0.1','themosempire.live']
+ALLOWED_HOSTS = ['web-production-6d28a.up.railway.app', 'localhost', '127.0.0.1','www.themosempire.live']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-6d28a.up.railway.app',
