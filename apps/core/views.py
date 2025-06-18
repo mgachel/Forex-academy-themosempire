@@ -138,9 +138,13 @@ def apply(request):
             
             # Calculate course price
             course_prices = {
-                ''
+                'basic': 20000,
+                'intermediate': 30000,
+                'advanced': 40000,
+                'elite': 50000
+    # Add all your course options here with their prices
             }
-            course_price = course_prices.get(form.cleaned_data['desired_course'], 2000)
+            course_price = course_prices.get(form.cleaned_data['desired_course'], 20000)
             request.session['course_price'] = course_price
             
             # Redirect to payment page
